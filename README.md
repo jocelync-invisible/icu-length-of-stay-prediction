@@ -3,7 +3,7 @@ Team: Hidden-Layer-Heroes
 
 ## Overview
 
-This project focuses on predicting the Length of Stay (LOS) in the Intensive Care Unit (ICU) using the mIMIC-III and mIMIC-IV datasets. The primary goal is to develop predictive models that can help healthcare professionals in estimating the length of a patient's stay in the ICU, aiding in resource allocation and decision-making.
+This project focuses on predicting the Length of Stay (LOS) in the Intensive Care Unit (ICU) using the MIMIC-III and MIMIC-IV datasets. The primary goal is to develop predictive models that can help healthcare professionals in estimating the length of a patient's stay in the ICU, aiding in resource allocation and decision-making.
 
 ## Dataset
 
