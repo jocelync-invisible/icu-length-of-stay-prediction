@@ -23,28 +23,34 @@ how did we merge the teables( patients+ICU stay+ micro)
 Why & how use micro culture( Lab result) + demograghics 
 
 ## EDA
-
-PCA dimentionality reductio and feature selction
-random forest: feature importance
+Step 1: Understand the Problem and the Data
+Step 2: Import and Inspect the Data
+Step 3: Handling Missing Values
+Step 4: Explore Data Characteristics
+Step 5: Perform Data Transformation(log and scale)
+Step 6: PCA  
+Step 7: Visualize Data Relationships
+Step 8: (Handling Outliers)
+Step 9: Communicate Findings and Insights
 
 
 ## Models
 
 ### Baysian linear regression
 
-1. log and scale
-2. build the model (explain the steps show snipet odcodes) explain the feature impotance, and what we did to optimize the performacne of BLR)
-3. BLS result and visualization
-
+1. build the model (explain the steps show snipet odcodes) explain the feature impotance, and what we did to optimize the performacne of BLR)
+2. BLS result and visualization
+3. result interpretation
 
 ### BNN (brief introduction)
 
-log and scale
-Build BNN( MC drop ou)
-l2 vs l1 regulation (MSE vs MAE)
-BNN result and visualization
 
-### result interpretation and discussion of limitations
+1.Build BNN( MC drop ou)
+2.l2 vs l1 regulation (MSE vs MAE)
+3.BNN result and visualization
+4.result interpretation
+
+### result interpretation, comparison and discussion of limitations
 
 ## Next Step
  Try differnt models(ie  nonnbaysain ones)
