@@ -62,7 +62,10 @@ Step 9: Communicate Findings and Insights
 
 ## Next Step
  Try differnt models(ie  nonnbaysain ones)
+ 
  Get more data from the MIMIC III and IV
+
+ Based on the uncertainty of the result, we can proprose otehr suggestions
  
  
 
