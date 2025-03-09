@@ -24,13 +24,21 @@ Why & how use micro culture( Lab result) + demograghics
 
 ## EDA
 Step 1: Understand the Problem and the Data
+
 Step 2: Import and Inspect the Data
+
 Step 3: Handling Missing Values
+
 Step 4: Explore Data Characteristics
+
 Step 5: Perform Data Transformation(log and scale)
+
 Step 6: PCA  
+
 Step 7: Visualize Data Relationships
+
 Step 8: (Handling Outliers)
+
 Step 9: Communicate Findings and Insights
 
 
