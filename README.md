@@ -33,7 +33,7 @@ random forest: feature importance
 ### Baysian linear regression
 
 1. log and scale
-2. build the model (explain the steps show snipet odcodes) explain the feature impotance
+2. build the model (explain the steps show snipet odcodes) explain the feature impotance, and what we did to optimize the performacne of BLR)
 3. BLS result and visualization
 
 
