@@ -17,7 +17,7 @@ MIMIC-IV: https://physionet.org/content/mimic-iv/1.0/
 
 100 patients 
 
-how did we merge the DAT
+how did we merge the teables( patients+ICU stay+ micro)
 
 
 Why & how use micro culture( Lab result) + demograghics 
@@ -33,15 +33,28 @@ random forest: feature importance
 ### Baysian linear regression
 
 1. log and scale
-2. build the model (explain the steps show snipet odcodes)
-3. 
+2. build the model (explain the steps show snipet odcodes) explain the feature impotance
+3. BLS result and visualization
 
 
 ### BNN (brief introduction)
 
 log and scale
-
+Build BNN( MC drop ou)
 l2 vs l1 regulation (MSE vs MAE)
+BNN result and visualization
+
+### result interpretation and discussion of limitations
+
+## Next Step
+ Try differnt models(ie  nonnbaysain ones)
+ Get more data from the MIMIC III and IV
+ 
+ 
+
+
+
+
 
 
 
