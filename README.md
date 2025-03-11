@@ -70,18 +70,22 @@ Variables Lists
 
 ### EDA steps:(2.5mins)
 Data Overview by Positive Culture
+
 ![image](https://github.com/user-attachments/assets/b7623b9d-935f-4039-8d6b-237b63f6d4b3)
 
 
 Top 10 Microorganism by Number of Stays
+
 ![image](https://github.com/user-attachments/assets/788a99ff-98b9-485f-8f99-7ea00278968d)
 
 
 Correlation Heatmap
 
+
 ![image](https://github.com/user-attachments/assets/da98a098-5d18-4201-aad9-f438d164764b)
 
 LOS Distribution Comparison Between Positive and Non Positive Culture
+
 ![image](https://github.com/user-attachments/assets/06f4eb16-01ac-4711-bbf5-ebb223f44d38)
 
 
