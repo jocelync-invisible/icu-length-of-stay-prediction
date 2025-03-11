@@ -3,24 +3,30 @@ Team: Hidden-Layer-Heroes
 
 ## Overview
 
-This project focuses on predicting the Length of Stay (LOS) in the Intensive Care Unit (ICU) using the MIMIC-III and MIMIC-IV datasets. The primary goal is to develop predictive models that can help healthcare professionals in estimating the length of a patient's stay in the ICU, aiding in resource allocation and decision-making.
+This project focuses on predicting Length of Stay (LOS) in the ICU using MIMIC-III and MIMIC-IV datasets, with a focus on infections and demographics. Infections, identified through microbiology cultures, are potentially important factors influencing ICU stay duration, although their exact impact on LOS is still being explored.
+
+In addition to microbiology data, demographic factors such as age, gender, marital status, and insurance type are considered, as they may also play a role in predicting ICU outcomes.
+
+By applying Bayesian modeling, we aim to integrate both microbiology culture and demographic data, accounting for uncertainty in the results. This approach will help refine predictions of ICU LOS, supporting healthcare professionals in making more informed decisions about resource allocation and patient care.
 
 ## Dataset
-
-This project uses the MIMIC-III and MIMIC-IV demo datasets, which are publicly available critical care data These datasets include various patient parameters, laboratory results, and demographic information.
-
-To access the mIMIC datasets:
+In this project, we gather information from the MIMIC-III and MIMIC-IV demo datasets. Both of these datasets contain clinical data from ICU patients. Both datasets contain clinical data from ICU patients, consisting of over 24 tables. The demo datasets used for this project contain records for 100 patients from each MIMIC-III and MIMIC-IV. 
 
 MIMIC-III: https://physionet.org/content/mimic-iii-clinical-database/1.4/
 
 MIMIC-IV: https://physionet.org/content/mimic-iv/1.0/
 
-100 patients 
 
-how did we merge the teables( patients+ICU stay+ micro)
+### Merging Tables:
 
+To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU, we merged the following tables:
 
-Why & how use micro culture( Lab result) + demograghics 
+Patients: Demographic information, such as age, gender, marital status, and insurance. These variables play an important role in understanding patient outcomes.
+Admissions: Information about the patient's hospital admission, such as admission time.
+ICU Stays: Data on the patient's stay in the ICU, such as ICU start and end times, ICU type, and stay duration.
+Microbiology Events: Data from microbiology culture results.
+
+We merged the tables based on subject_id, stay_id and hadm_id.  ( note explain them)
 
 ## EDA
 Step 1: Understand the Problem and the Data
