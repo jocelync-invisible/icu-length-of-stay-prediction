@@ -10,7 +10,7 @@ In addition to microbiology data, demographic factors such as age, gender, marit
 By applying Bayesian modeling, we aim to integrate both microbiology culture and demographic data, accounting for uncertainty in the results. This approach will help refine predictions of ICU LOS, supporting healthcare professionals in making more informed decisions about resource allocation and patient care.
 
 ## Dataset 
-In this project, we gather information from the MIMIC-III and MIMIC-IV demo datasets. Both of these datasets contain clinical data from ICU patients. Both datasets contain clinical data from ICU patients, consisting of over 24 tables. The demo datasets used for this project contain records for 100 patients from each MIMIC-III and MIMIC-IV. 
+In this project, we gather information from the MIMIC-III and MIMIC-IV demo datasets. MIMIC is a database comprising deidentified health-related data with patients who stayed in critical care units of the Beth Israel Deaconess Medical Center. MIMIC III contains data between 2001 and 2012, while MIMIC IV contains data for anchor age group 2011-2013 or 2014-2016. Both datasets consist of over 26 tables. The demo datasets used for this project contain records for 100 patients from each MIMIC-III and MIMIC-IV, that are selected randomly. 
 
 MIMIC-III: https://physionet.org/content/mimic-iii-clinical-database/1.4/
 
@@ -23,8 +23,17 @@ MIMIC-IV: https://physionet.org/content/mimic-iv/1.0/
 
 ### Merging Tables:
 
-To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU, we merged the following tables:
+To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU, we merged the following tables: 
+- admissions: gives information regarding a patient’s admission to the hospital, includes demographic information. The unique identifier is hadm_id
+  - Selected columns: 
+- patients: information about gender and age identified by subject_id
+  - Selected columns
+- icustay: defines each ICU stay in the database using STAY_ID, including admission and discharge info
+  - Columns used: 
+- microbiologyevents: contains infectious growth from blood sample
+  - Columns used: 
 
+- , patients and icustay.
 (add codes)
 
 Patients: Demographic information, such as age, gender, marital status, and insurance. These variables play an important role in understanding patient outcomes.
