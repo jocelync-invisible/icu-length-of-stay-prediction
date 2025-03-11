@@ -44,6 +44,11 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
     
     ![image](https://github.com/user-attachments/assets/b76ebc77-f3ae-4de6-bd35-cf3e293380fd)
 
+- Merging process:
+  1. Join patients and admissions table on subject_id
+  2. Join the above table to icustays table on subject_id and hadm_id
+  3. Join the above table to microbiology events table on subject_id and hadm_id
+
 - Final Dataset:
   
   ![image](https://github.com/user-attachments/assets/2ad09f49-41a4-4679-a3ac-ac1f057ab19c)
@@ -61,12 +66,25 @@ Variables Lists
 | Marital_status  | Marital status of patient on admission (1: Married, 0: Single, Widowed, Divorced)  |
 
 
-We merged the tables based on subject_id, stay_id and hadm_id.  ( note explain them)
+
 
 ### EDA steps:(2.5mins)
+Data Overview by Positive Culture
+![image](https://github.com/user-attachments/assets/b7623b9d-935f-4039-8d6b-237b63f6d4b3)
 
-los distribution gragh 
-infection vs non infection bar chart
+
+Top 10 Microorganism by Number of Stays
+![image](https://github.com/user-attachments/assets/788a99ff-98b9-485f-8f99-7ea00278968d)
+
+
+Correlation Heatmap
+
+![image](https://github.com/user-attachments/assets/da98a098-5d18-4201-aad9-f438d164764b)
+
+LOS Distribution Comparison Between Positive and Non Positive Culture
+![image](https://github.com/user-attachments/assets/06f4eb16-01ac-4711-bbf5-ebb223f44d38)
+
+
 PCA
 
 
