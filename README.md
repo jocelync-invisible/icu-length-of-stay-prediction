@@ -26,21 +26,26 @@ MIMIC-IV: https://physionet.org/content/mimic-iv/1.0/
 To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU, we merged the following tables: 
 - admissions: gives information regarding a patient’s admission to the hospital, includes demographic information. The unique identifier is hadm_id
   - Columns used: subject_id, hadm_id, insurance, marital_status
+    
     ![image](https://github.com/user-attachments/assets/3e0ee544-6e55-46ec-8377-015fbdc01283)
 
 - patients: information about gender and age identified by subject_id
   - Columns used: subject_id, gender, age
+    
     ![image](https://github.com/user-attachments/assets/f2865c69-d60f-4ae5-9109-3d2ffa0f5cde)
 
 - icustay: defines each ICU stay in the database using STAY_ID, including admission, discharge, and length of stay
   - Columns used: subject_id, hadm_id, stay_id, los
+    
     ![image](https://github.com/user-attachments/assets/f5be437b-8062-4f17-931b-9318ce798839)
 
 - microbiologyevents: contains infectious growth from blood sample
   - Columns used: subject_id, hadm_id, org_name (list of infections)
+    
     ![image](https://github.com/user-attachments/assets/b76ebc77-f3ae-4de6-bd35-cf3e293380fd)
 
 - Final Dataset:
+  
   ![image](https://github.com/user-attachments/assets/2ad09f49-41a4-4679-a3ac-ac1f057ab19c)
 
 Variables Lists
