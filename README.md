@@ -2,7 +2,7 @@
 Team: Hidden-Layer-Heroes 
 
 ## Overview
-
+(explain why los   and infectionss, inocation(litureature review shows most people focusing on using diagonosis data)
 This project focuses on predicting Length of Stay (LOS) in the ICU using MIMIC-III and MIMIC-IV datasets, with a focus on infections and demographics. Infections, identified through microbiology cultures, are potentially important factors influencing ICU stay duration, although their exact impact on LOS is still being explored.
 
 In addition to microbiology data, demographic factors such as age, gender, marital status, and insurance type are considered, as they may also play a role in predicting ICU outcomes.
