@@ -22,8 +22,11 @@ MIMIC-IV: https://physionet.org/content/mimic-iv/1.0/
 To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU, we merged the following tables:
 
 Patients: Demographic information, such as age, gender, marital status, and insurance. These variables play an important role in understanding patient outcomes.
+
 Admissions: Information about the patient's hospital admission, such as admission time.
+
 ICU Stays: Data on the patient's stay in the ICU, such as ICU start and end times, ICU type, and stay duration.
+
 Microbiology Events: Data from microbiology culture results.
 
 We merged the tables based on subject_id, stay_id and hadm_id.  ( note explain them)
