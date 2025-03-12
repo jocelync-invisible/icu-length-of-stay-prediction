@@ -99,17 +99,51 @@ We decided to use PC9 as the threshold to explain at least 95% variance from our
 
 ### Model Selection
 
-#### Bayesian Linear Regression  
+#### Bayesian Linear Regression
+
+Bayesian linear regression extends traditional linear regression by treating model parameters as probability distributions rather than fixed values. 
+
+We implements Bayesian linear regression using PyMC to provide full probability distributions rather than just point estimates.
+
+**Model Architecture**
+
+The model follows a Bayesian framework with:
+
+- Prior Distributions: Initial beliefs about model parameters
+
+a. Intercept (α) ~ Normal(0, 1)
+
+b. Coefficients (β) ~ Normal(0, 1)
+
+c. Error term (σ) ~ HalfNormal(1)
+![image](https://github.com/user-attachments/assets/39eb6005-2dbc-44b3-80d2-3775ead8a7da)
+
+- Likelihood: How the data is generated given the parameters
+
+Observations follow a normal distribution around the predicted values
+y ~ Normal(α + Xβ, σ)
+![image](https://github.com/user-attachments/assets/89702b4a-6b4f-4ea9-97ec-5a000879e6b3)
+
+
+- Posterior: Updated beliefs after observing data, obtained through MCMC sampling
+![image](https://github.com/user-attachments/assets/9504e7b2-2d67-4906-a51f-bb1df333772e)
+
+**Model Performance**
+
+RMSE Test: 0.9432375826569617
+
+R^2 Test: 0.12356540029771512
+
+RMSE Training: 0.9092801630996732
+
+R^2 Training: 0.17004178873982456
+
+![image](https://github.com/user-attachments/assets/00518d18-6ca4-4ff9-9f58-3cf9949a1bed)
 
 
 
-specify independent/ dependent variables (ie PC1-9 as X and los as y)
-intro of BLS
-why we do linear regression and why bayesian is better( provide more information etc)
-specify prior and posterior distribution -> the posterior prediction distribution
-interpretation of result
 
-### BNN (brief introduction 30 sec)
+### BNN ()
 
 **Model Architecture**
 The Bayesian Neural Network consists of:
