@@ -83,38 +83,38 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 
 ## Exploratory Data Analysis
 
-add describe
-update with new data
+Descriptive Statistics
+<p align="left">
+      <img src="https://github.com/user-attachments/assets/19d3a928-21f4-44ed-bb1c-b1fc1ba1b069" width="800">
+    </p>
 
 Data Overview by Positive Culture
 <p align="left">
-      <img src="https://github.com/user-attachments/assets/b7623b9d-935f-4039-8d6b-237b63f6d4b3" width="400">
+      <img src="https://github.com/user-attachments/assets/e07108e1-32f2-4c97-877a-403ab527db1b" width="400">
     </p>
 
 
 Top 10 Microorganisms by Number of Stays
 <p align="left">
-      <img src="https://github.com/user-attachments/assets/788a99ff-98b9-485f-8f99-7ea00278968d" width="400">
+      <img src="https://github.com/user-attachments/assets/18286dab-ccc0-48a1-9bca-9439d1d1c014" width="400">
     </p>
 
 
 Correlation Heatmap
 <p align="left">
-      <img src="https://github.com/user-attachments/assets/da98a098-5d18-4201-aad9-f438d164764b" width="500">
+      <img src="https://github.com/user-attachments/assets/430ea888-480c-475b-8c3e-8e235f04bc4c" width="500">
     </p>
-
 
 LOS Distribution Comparison Between Positive and Non-Positive Culture
 <p align="left">
-      <img src="https://github.com/user-attachments/assets/06f4eb16-01ac-4711-bbf5-ebb223f44d38" width="700">
+      <img src="https://github.com/user-attachments/assets/765e9919-1b24-47be-9a8a-20b0fe25cdf9" width="700">
     </p>
-
 
 PCA
 
 We decided to use PC9 as the threshold to explain at least 95% variance from our data
 <p align="left">
-      <img src="https://github.com/user-attachments/assets/44acc8a1-426d-49ca-98d9-609e0c4f6e9d" width="500">
+      <img src="https://github.com/user-attachments/assets/e91e9ac2-ec92-42ea-ab8b-efc43ab0d151" width="500">
     </p>
 
 
