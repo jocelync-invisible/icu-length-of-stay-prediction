@@ -1,1 +1,115 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+df=pd.to_csv("mimiccomb_processed.csv")
+df.drop('Unnamed: 0', axis=1, inplace=True)
+
+df.head()
+
+df.loc[df['positive_culture'] == 0, 'microbio_group_comb'] = 'Unknown'
+
+df.columns
+
+df.isnull().sum()
+
+df["los"] = df["los"].astype(int)
+df["stay_id"] = df["stay_id"].astype(int)
+
+df.info()
+
+# handle missing data in marital_status
+df["marital_status"].fillna("Unknown", inplace=True)
+
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+num_cols = ["anchor_age"]
+cat_cols = ["gender", "insurance", "marital_status", "positive_culture",
+    "microbio_group_comb", "microbio_group_Unknown", "microbio_group_fungi_yeasts",
+    "microbio_group_gram_negative_rods", "microbio_group_gram_positive_cocci",
+    "microbio_group_gram_positive_rods", "microbio_group_mixed_flora"]
+org_col = ["org_name"]
+
+
+# encode `org_name` only for rows with a positive culture
+df_org_pca = df[df["positive_culture"] == 1][["org_name"]].copy()
+
+df["org_name"] = df["org_name"].fillna("Missing")
+
+org_encoder = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+org_encoded = org_encoder.fit_transform(df_org_pca)
+
+org_encoded
+
+# Run PCA to reduce dimensionality of org_name
+pca_org = PCA(n_components=0.95)
+org_pca_transformed = pca_org.fit_transform(org_encoded)
+
+org_pca_transformed
+
+# Convert to DataFrame
+org_pca_df = pd.DataFrame(org_pca_transformed, columns=[f'Org_PC{i+1}' for i in range(org_pca_transformed.shape[1])])
+
+# Return original index and missing values
+df_org_pca = df_org_pca.reset_index(drop=True)
+org_pca_df = org_pca_df.set_index(df_org_pca.index)
+
+# Merge PCA-Reduced org_name back into original dataset
+df = df.reset_index(drop=True)
+df = df.join(org_pca_df)
+
+
+# Preprocessing Pipeline for Remaining Features
+num_pipeline = Pipeline([
+    ("scaler", StandardScaler())
+])
+
+cat_pipeline = Pipeline([
+    ("encoder", OneHotEncoder(handle_unknown="ignore"))
+])
+
+preprocessor = ColumnTransformer([
+    ("num", num_pipeline, num_cols),
+    ("cat", cat_pipeline, cat_cols)
+])
+
+# Convert all categorical columns to strings
+df[cat_cols] = df[cat_cols].astype(str)
+
+# Transform the data
+df_transformed = preprocessor.fit_transform(df)
+df_transformed
+
+# Apply final PCA to reduce overall dimensions
+pca = PCA(n_components=0.95)
+pca_transformed = pca.fit_transform(df_transformed)
+
+pca_df = pd.DataFrame(data=pca_transformed, columns=[f'PC{i+1}' for i in range(pca_transformed.shape[1])])
+pca_df
+
+# Scree Plot
+explained_variance = np.cumsum(pca.explained_variance_ratio_)
+plt.figure(figsize=(8,6))
+plt.plot(range(1, len(explained_variance)+1), explained_variance, marker='o', linestyle='--')
+plt.xlabel('Number of Principal Components')
+plt.ylabel('Cumulative Explained Variance')
+plt.title('Scree Plot for PCA')
+plt.axhline(y=0.95, color='r', linestyle='--')
+plt.show()
+
+# Print Summary
+print(f"Original 'org_name' had {org_encoded.shape[1]} dimensions, reduced to {org_pca_transformed.shape[1]} components.")
+print(f"Final PCA components for modeling: {pca_transformed.shape[1]}")
+print(f"Explained Variance by selected components: {explained_variance[-1]:.2f}")
+
+pca_df.to_csv("pca_transformed_data.csv", index=False)
+
+# check PCA components are orthogonal
+product = np.dot(pca.components_[0],pca.components_[1])
+product.round(5)
