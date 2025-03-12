@@ -85,7 +85,7 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 
 Descriptive Statistics
 <p align="left">
-      <img src="https://github.com/user-attachments/assets/19d3a928-21f4-44ed-bb1c-b1fc1ba1b069" width="800">
+      <img src="https://github.com/user-attachments/assets/7ca129a7-ae2b-45e7-a845-847b6703f302" width="700">
     </p>
 
 Data Overview by Positive Culture
@@ -112,7 +112,7 @@ LOS Distribution Comparison Between Positive and Non-Positive Culture
 
 PCA
 
-We decided to use PC9 as the threshold to explain at least 95% variance from our data
+We decided to use PC7 as the threshold to explain at least 95% variance from our data
 <p align="left">
       <img src="https://github.com/user-attachments/assets/e91e9ac2-ec92-42ea-ab8b-efc43ab0d151" width="500">
     </p>
