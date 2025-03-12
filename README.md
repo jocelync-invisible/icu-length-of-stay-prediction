@@ -85,36 +85,36 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 ## Exploratory Data Analysis
 
 Descriptive Statistics
-<p align="left">
-      <img src="https://github.com/user-attachments/assets/7ca129a7-ae2b-45e7-a845-847b6703f302" width="700">
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/7ca129a7-ae2b-45e7-a845-847b6703f302" width="1000">
     </p>
 
 Data Overview by Positive Culture
-<p align="left">
+<p align="center">
       <img src="https://github.com/user-attachments/assets/e07108e1-32f2-4c97-877a-403ab527db1b" width="400">
     </p>
 
 
 Top 10 Microorganisms by Number of Stays
-<p align="left">
-      <img src="https://github.com/user-attachments/assets/18286dab-ccc0-48a1-9bca-9439d1d1c014" width="400">
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/18286dab-ccc0-48a1-9bca-9439d1d1c014" width="500">
     </p>
 
 
 Correlation Heatmap
-<p align="left">
+<p align="center">
       <img src="https://github.com/user-attachments/assets/430ea888-480c-475b-8c3e-8e235f04bc4c" width="500">
     </p>
 
 LOS Distribution Comparison Between Positive and Non-Positive Culture
-<p align="left">
+<p align="center">
       <img src="https://github.com/user-attachments/assets/765e9919-1b24-47be-9a8a-20b0fe25cdf9" width="700">
     </p>
 
 PCA
 
 We decided to use PC7 as the threshold to explain at least 95% variance from our data
-<p align="left">
+<p align="center">
       <img src="https://github.com/user-attachments/assets/e91e9ac2-ec92-42ea-ab8b-efc43ab0d151" width="500">
     </p>
 
@@ -134,22 +134,31 @@ The model follows a Bayesian framework with:
 
 - Prior Distributions: Initial beliefs about model parameters
 
-a. Intercept (α) ~ Normal(0, 1)
-
-b. Coefficients (β) ~ Normal(0, 1)
-
-c. Error term (σ) ~ HalfNormal(1)
-![image](https://github.com/user-attachments/assets/39eb6005-2dbc-44b3-80d2-3775ead8a7da)
+  a. Intercept (α) ~ Normal(0, 1)
+  
+  b. Coefficients (β) ~ Normal(0, 1)
+  
+  c. Error term (σ) ~ HalfNormal(1)
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/39eb6005-2dbc-44b3-80d2-3775ead8a7da" width="600">
+    </p>
+    
 
 - Likelihood: How the data is generated given the parameters
 
-Observations follow a normal distribution around the predicted values
-y ~ Normal(α + Xβ, σ)
-![image](https://github.com/user-attachments/assets/89702b4a-6b4f-4ea9-97ec-5a000879e6b3)
+  Observations follow a normal distribution around the predicted values
+  y ~ Normal(α + Xβ, σ)
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/89702b4a-6b4f-4ea9-97ec-5a000879e6b3" width="600">
+    </p>
 
 
 - Posterior: Updated beliefs after observing data, obtained through MCMC sampling
-![image](https://github.com/user-attachments/assets/9504e7b2-2d67-4906-a51f-bb1df333772e)
+
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/9504e7b2-2d67-4906-a51f-bb1df333772e" width="600">
+    </p>
+
 
 * Full probability distributions were obtained using PyMC
 
@@ -163,8 +172,10 @@ y ~ Normal(α + Xβ, σ)
 
 - R^2 Training: 0.17004178873982456
 
-![image](https://github.com/user-attachments/assets/00518d18-6ca4-4ff9-9f58-3cf9949a1bed)
-
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/00518d18-6ca4-4ff9-9f58-3cf9949a1bed" width="700">
+    </p>
+  
 
 
 
@@ -194,13 +205,19 @@ The model was trained with the following callbacks:
 - EarlyStopping: Monitoring validation loss with patience of 15 epochs
 - ReduceLROnPlateau: Reducing learning rate by a factor of 0.3 with patience of 10 epochs
 
-![Image](https://github.com/user-attachments/assets/df0d50eb-fdf4-43be-8d3d-329eedd84821)
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/df0d50eb-fdf4-43be-8d3d-329eedd84821" width="700">
+    </p>
+
 
 #### Uncertainty Estimation
 
 Uncertainty is estimated using Monte Carlo Dropout with 100 forward passes during inference. This provides both the mean prediction and standard deviation for each sample.
 
-![Image](https://github.com/user-attachments/assets/28513fe7-ab15-41a9-afb4-fd07041f9408)
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/28513fe7-ab15-41a9-afb4-fd07041f9408" width="700">
+    </p>
+
 
 #### Model Performance
 
@@ -211,7 +228,10 @@ Performance metrics on the test set (original scale - days):
 - MAE: 0.2950 days
 - R-squared: 0.7060
 
-![Image](https://github.com/user-attachments/assets/21efa533-9858-42a8-b731-b3410e89c596)
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/21efa533-9858-42a8-b731-b3410e89c596" width="700">
+    </p>
+
 
 Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall is moderately good performance (R-squared: 0.706). Despite this, the BNN's result still very useful for doctors because it shows not just how long a patient might stay, but also how confident we are in that prediction.
 
