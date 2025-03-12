@@ -134,7 +134,7 @@ We decided to use PC7 as the threshold to explain at least 95% variance from our
 
 Bayesian linear regression extends traditional linear regression by incorporating prior beliefs regarding the parameters, allowing for more stable and interpretable results. The method is particularly useful in cases with limited data or high uncertainty as it combines prior distributions with observed data to update beliefs and obtain a posterior probability distribution. Compared to a traditional linear regression which assumes homoscedasticity, no multicollinearity, and normally distributed residuals—assumptions that may not hold in real-world clinical data. By incorporating prior information, providing a full posterior distribution, and capturing uncertainty more effectively, Bayesian regression is the most appropriate approach for this project’s objectives.
 
-In this analysis, the independent variables (X) are the principal components (PC1–PC9), which were derived through Principal Component Analysis (PCA) to reduce dimensionality and mitigate collinearity among the original predictors. The dependent variable (Y) is LOS.
+In this analysis, the independent variables (X) are the principal components (PC1–PC7), which were derived through Principal Component Analysis (PCA) to reduce dimensionality and mitigate collinearity among the original predictors. The dependent variable (Y) is LOS.
 
 
 #### Model Architecture
