@@ -31,34 +31,39 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 
 - "admissions": gives information regarding a patient’s admission to the hospital, includes demographic information. The unique identifier is hadm_id
   - Columns used: subject_id, hadm_id, insurance, marital_status
-    
-    ![image](https://github.com/user-attachments/assets/3e0ee544-6e55-46ec-8377-015fbdc01283)
+        <p align="center">
+      <img src="https://github.com/user-attachments/assets/3e0ee544-6e55-46ec-8377-015fbdc01283" width="370">
+    </p>
 
 - "patients": information about gender and age identified by subject_id
   - Columns used: subject_id, gender, age
-    
-    ![image](https://github.com/user-attachments/assets/f2865c69-d60f-4ae5-9109-3d2ffa0f5cde)
+    <p align="center">
+      <img src="https://github.com/user-attachments/assets/f2865c69-d60f-4ae5-9109-3d2ffa0f5cde" width="250">
+    </p>
 
 - "icustay": defines each ICU stay in the database using STAY_ID, including admission, discharge, and length of stay
   - Columns used: subject_id, hadm_id, stay_id, los
-    
-    ![image](https://github.com/user-attachments/assets/f5be437b-8062-4f17-931b-9318ce798839)
+    <p align="center">
+      <img src="https://github.com/user-attachments/assets/f5be437b-8062-4f17-931b-9318ce798839" width="320">
+    </p>
 
 - "microbiologyevents": contains infectious growth from blood sample
   - Columns used: subject_id, hadm_id, org_name (list of infections)
-    
-    ![image](https://github.com/user-attachments/assets/b76ebc77-f3ae-4de6-bd35-cf3e293380fd)
+    <p align="center">
+      <img src="https://github.com/user-attachments/assets/b76ebc77-f3ae-4de6-bd35-cf3e293380fd" width="500">
+    </p>
 
 
 #### Merging process:
   1. Join patients and admissions table on subject_id
   2. Join the above table to icustays table on subject_id and hadm_id
-  3. Join the above table to microbiology events table on subject_id and hadm_id
+  3. Join the above table to the microbiology events table on subject_id and hadm_id
 
 
 #### Final Dataset:
-  
-  ![image](https://github.com/user-attachments/assets/2ad09f49-41a4-4679-a3ac-ac1f057ab19c)
+  <p align="center">
+      <img src="https://github.com/user-attachments/assets/2ad09f49-41a4-4679-a3ac-ac1f057ab19c" width="800">
+    </p>
 
 
 #### Variables Lists
@@ -66,9 +71,9 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 | Variables  | Description |
 | ------------- | ------------- |
 | Los  | Length of ICU stay (in days)  |
-| Age  | Patient age on the admission  |
+| Age  | Patient age at admission  |
 | Gender  | Patient gender (1: Male, 0: Female)  |
-| Insurance  | Binary variable of insurance on admission (1: Medicacare, Medicaid; 0: Private  |
+| Insurance  | Binary variable of insurance on admission (1: Medicare, Medicaid; 0: Private  |
 | Marital_status  | Patient age on the admission (in years) |
 | Positive_culture  | Binary variable of microbio ifections (1: infected, 0: not infected)  |
 | Marital_status  | Marital status of patient on admission (1: Married, 0: Single, Widowed, Divorced)  |
@@ -79,30 +84,34 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 ## Exploratory Data Analysis
 
 Data Overview by Positive Culture
+<p align="left">
+      <img src="https://github.com/user-attachments/assets/b7623b9d-935f-4039-8d6b-237b63f6d4b3" width="400">
+    </p>
 
-![image](https://github.com/user-attachments/assets/b7623b9d-935f-4039-8d6b-237b63f6d4b3)
 
-
-Top 10 Microorganism by Number of Stays
-
-![image](https://github.com/user-attachments/assets/788a99ff-98b9-485f-8f99-7ea00278968d)
+Top 10 Microorganisms by Number of Stays
+<p align="left">
+      <img src="https://github.com/user-attachments/assets/788a99ff-98b9-485f-8f99-7ea00278968d" width="400">
+    </p>
 
 
 Correlation Heatmap
-
-![image](https://github.com/user-attachments/assets/da98a098-5d18-4201-aad9-f438d164764b)
+<p align="left">
+      <img src="https://github.com/user-attachments/assets/da98a098-5d18-4201-aad9-f438d164764b" width="500">
+    </p>
 
 
 LOS Distribution Comparison Between Positive and Non Positive Culture
-
-![image](https://github.com/user-attachments/assets/06f4eb16-01ac-4711-bbf5-ebb223f44d38)
+<p align="left">
+      <img src="https://github.com/user-attachments/assets/06f4eb16-01ac-4711-bbf5-ebb223f44d38" width="700">
+    </p>
 
 
 PCA
 We decided to use PC9 as the threshold to explain at least 95% variance from our data
-
-![image](https://github.com/user-attachments/assets/44acc8a1-426d-49ca-98d9-609e0c4f6e9d)
-
+<p align="left">
+      <img src="https://github.com/user-attachments/assets/44acc8a1-426d-49ca-98d9-609e0c4f6e9d" width="500">
+    </p>
 
 
 ## Model Selection
