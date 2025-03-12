@@ -98,35 +98,35 @@ There are 2731 rows from our data. LOS ranges from 0-31 days.
       <img src="https://github.com/user-attachments/assets/e07108e1-32f2-4c97-877a-403ab527db1b" width="400">
     </p>
 There is data imbalance between positive and non-positive culture. The average los for positive culture is lower from the non-positive culture.
-
+</p>
 
 **Top 10 Microorganisms by Number of Stays**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/18286dab-ccc0-48a1-9bca-9439d1d1c014" width="500">
     </p>
 Yeast, Staph Aureus Coag, and Escherichia Coli are the top 3 microorganisms by highest number of stays.
-
+</p>
 
 **Correlation Heatmap**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/58b82849-f7b8-4408-82b7-5ebdfa6121d7" width="500">
     </p>
 Generally, there are weak negative relationship among los and demographic and microbio group
-
+</p>
 
 **LOS Distribution Comparison Between Positive and Non-Positive Culture**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/765e9919-1b24-47be-9a8a-20b0fe25cdf9" width="700">
     </p>
 Los distribution for both culture is positively skewed, there is higher observations with shorter los for positive culture, but it might be affected by data imbalance as well
-
+</p>
 
 **PCA**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/e91e9ac2-ec92-42ea-ab8b-efc43ab0d151" width="500">
     </p>
 We decided to use PC7 as the threshold to explain at least 95% variance from our data
-
+</p>
 
 ## Model Selection
 
