@@ -129,24 +129,24 @@ The model was trained with the following callbacks:
 - EarlyStopping: Monitoring validation loss with patience of 15 epochs
 - ReduceLROnPlateau: Reducing learning rate by a factor of 0.3 with patience of 10 epochs
 
-![Image](https://github.com/user-attachments/assets/bc7597a9-13f9-4023-96cd-e52e1bf54051)
+![Image](https://github.com/user-attachments/assets/df0d50eb-fdf4-43be-8d3d-329eedd84821)
 
 **Uncertainty Estimation**
 Uncertainty is estimated using Monte Carlo Dropout with 100 forward passes during inference. This provides both the mean prediction and standard deviation for each sample.
 
-![Image](https://github.com/user-attachments/assets/214f8b77-3543-4cbe-b2f6-f3b2f130cef9)
+![Image](https://github.com/user-attachments/assets/28513fe7-ab15-41a9-afb4-fd07041f9408)
 
 **Model Performance**
 Performance metrics on the test set (original scale - days):
 
-- MSE: 23.33 days²
-- RMSE: 4.83 days
-- MAE: 3.31 days
-- R-squared: 0.049
+- MSE: 0.2780 days²
+- RMSE: 0.5272 days
+- MAE: 0.2950 days
+- R-squared: 0.7060
 
-![Image](https://github.com/user-attachments/assets/eee96f23-0029-4477-acfa-8e3e84c92bec)
+![Image](https://github.com/user-attachments/assets/21efa533-9858-42a8-b731-b3410e89c596)
 
-Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall performance is limited (R-squared: 0.049), likely because of data volume. Despite this, the BNN's result still very useful for doctors because it shows not just how long a patient might stay, but also how confident we are in that prediction.
+Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall is moderately good performance (R-squared: 0.706). Despite this, the BNN's result still very useful for doctors because it shows not just how long a patient might stay, but also how confident we are in that prediction.
 
 ### Challenges and Model Comparison(1.5mins)
 
