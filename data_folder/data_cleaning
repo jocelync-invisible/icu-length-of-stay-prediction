@@ -1,0 +1,231 @@
+# DATA PREPROCESSING MIMIC III
+"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# retrieve patients features
+usecols = ['subject_id', 'gender', 'dob','dod']
+patients_df = pd.read_csv('PATIENTS iii.csv', usecols=usecols)
+
+# retrieve admissions features
+usecols = ['subject_id', 'hadm_id', 'admission_type', 'admittime', 'hospital_expire_flag',
+            'admission_location', 'discharge_location', 'insurance','marital_status','diagnosis','deathtime']
+
+admissions_df = pd.read_csv('ADMISSIONS iii.csv', usecols=usecols,
+                            parse_dates=['admittime'])
+
+admissions_df['emergency_admission_is_yes'] = admissions_df['admission_type'] == 'EMERGENCY'
+
+# join patients and admissions table
+patient_char_df = pd.merge(patients_df, admissions_df, on='subject_id', how='outer')
+patient_char_df.head()
+
+#retrieve icustays features
+usecols = ['los', 'intime', 'subject_id', 'icustay_id', 'hadm_id']
+icustays_df = pd.read_csv('ICUSTAYS iii.csv', usecols=usecols, parse_dates=['intime'])
+
+#join patients, admissions, and icustays table
+patient_char_df = pd.merge(patient_char_df, icustays_df, on=['subject_id', 'hadm_id'], how='outer')
+
+final_stays = patient_char_df.groupby('hadm_id')['intime'].max()
+
+patient_char_df['final_icustay'] = patient_char_df.set_index('hadm_id')['intime'].isin(
+    final_stays).values
+
+patient_char_df['expired_this_icustay'] = patient_char_df['final_icustay'] & patient_char_df[
+    'hospital_expire_flag']
+
+patient_char_df.head()
+
+from datetime import datetime
+age_df = admissions_df.sort_values('admittime').drop_duplicates('subject_id')
+
+age_df = pd.merge(age_df, patients_df, on='subject_id')
+
+# Calculate the age by subtracting DOB from admittime
+age_df['dob'] = pd.to_datetime(age_df['dob'])  # Convert 'dob' to datetime objects
+age_df['admittime'] = pd.to_datetime(age_df['admittime'])  # Convert 'admittime' to datetime objects
+
+# Calculate the difference in years
+age_df['age'] = age_df.apply(lambda row: (row['admittime'].year - row['dob'].year), axis=1)
+
+age_df = age_df[['subject_id', 'age']]
+
+# use 90 years as max cap of age
+age_df[age_df['age'] < -200] = 90
+age_df[age_df['age'] > 200] = 90
+age_df
+
+#join the table with age
+patient_char_df = pd.merge(patient_char_df, age_df, on='subject_id', how='outer')
+
+patient_char_df = patient_char_df.drop(['dob'], axis=1)
+patient_char_df
+
+# exclude patients who are die
+patient_char_df['death']=np.where(patient_char_df['deathtime'].isna(),0,1)
+patient_char_df=patient_char_df.query("death==0")
+
+# keep relevant columns
+patient_char_df=patient_char_df[['subject_id', 'gender', 'age','hadm_id',
+       'insurance', 'marital_status', 'icustay_id','diagnosis',
+        'los']]
+patient_char_df.shape
+
+# retrieve microbiology events table
+microbio=pd.read_csv('MICROBIOLOGYEVENTS iii.csv')
+
+# use list to compile microbio infections by stay and subject id
+microbio_agg = microbio.groupby(['subject_id', 'hadm_id'])['org_name'].apply(lambda x: list(set(x))).reset_index()
+microbio_agg.head()
+
+import pandas as pd
+import numpy as np
+
+# remove null microbio infections from the list
+
+def remove_nan_from_list(list_with_nans):
+    """Removes NaN values from a list."""
+    return [x for x in list_with_nans if not pd.isnull(x)]
+
+# Apply the function to the 'list_column' to remove NaNs from each list within it
+microbio_agg['org_name'] = microbio_agg['org_name'].apply(remove_nan_from_list)
+
+# Filter out rows where the list in 'list_column' is empty
+microbio_agg = microbio_agg[microbio_agg['org_name'].apply(lambda x: len(x) > 0)]
+microbio_agg.head()
+
+microbio_agg.reset_index(drop=True, inplace=True)
+microbio_agg.head()
+
+# join the table with mcirobiology events
+final=patient_char_df.merge(microbio_agg,on=['subject_id','hadm_id'],how='left')
+
+
+final['positive_culture'] = np.where(final['org_name'].isna(), 0, 1)
+final.head()
+
+final=final.query("los.notnull()")
+final.shape
+
+final.subject_id.nunique()
+
+final=final[['subject_id', 'gender', 'age', 'hadm_id', 'insurance',
+       'marital_status', 'icustay_id', 'los', 'org_name', 'positive_culture']]
+final.rename(columns={'age': 'anchor_age','icustay_id':'stay_id'}, inplace=True)
+
+
+# explode the list, so each stay would have each microbio infections
+import ast
+final['org_name'] = final['org_name'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) and x.startswith("[") else x)
+
+final=final.explode("org_name").reset_index(drop=True)
+final.head()
+
+#categorize microbio infections
+gram_negative_rods = [
+    'ACINETOBACTER BAUMANNII',
+    'ACINETOBACTER BAUMANNII COMPLEX',
+    'PSEUDOMONAS AERUGINOSA',
+    'KLEBSIELLA PNEUMONIAE',
+    'ENTEROBACTER CLOACAE COMPLEX',
+    'SERRATIA MARCESCENS',
+    'PROTEUS MIRABILIS',
+    'ESCHERICHIA COLI',
+    'BACTEROIDES FRAGILIS GROUP',
+    'CITROBACTER FREUNDII COMPLEX',
+    'STENOTROPHOMONAS MALTOPHILIA',
+    'FUSOBACTERIUM NUCLEATUM',
+    'FUSOBACTERIUM SPECIES',
+    'PORPHYROMONAS SPECIES',
+    'PREVOTELLA SPECIES',
+    'PRESUMPTIVE GARDNERELLA VAGINALIS',
+    'GRAM NEGATIVE ROD #3',
+    'GRAM NEGATIVE ROD(S)'
+]
+
+gram_positive_cocci = [
+    'STAPH AUREUS COAG +',
+    'POSITIVE FOR METHICILLIN RESISTANT STAPH AUREUS',
+    'STAPHYLOCOCCUS, COAGULASE NEGATIVE',
+    'ENTEROCOCCUS FAECALIS',
+    'ENTEROCOCCUS FAECIUM',
+    'ENTEROCOCCUS SP.',
+    'BETA STREPTOCOCCUS GROUP B',
+    'VIRIDANS STREPTOCOCCI',
+    'STREPTOCOCCUS ANGINOSUS',
+    'STREPTOCOCCUS ANGINOSUS (MILLERI) GROUP',
+    'GEMELLA SPECIES'
+]
+
+gram_positive_rods = [
+    'CLOSTRIDIUM DIFFICILE',
+    'CLOSTRIDIUM PERFRINGENS',
+    'CORYNEBACTERIUM SPECIES (DIPHTHEROIDS)',
+    'ANAEROBIC GRAM POSITIVE ROD(S)',
+    'GRAM POSITIVE RODS'
+]
+
+fungi_yeasts = [
+    'CANDIDA ALBICANS',
+    'CANDIDA ALBICANS, PRESUMPTIVE IDENTIFICATION',
+    'YEAST',
+    'YEAST, PRESUMPTIVELY NOT C. ALBICANS'
+]
+
+mixed_flora = [
+    'MIXED BACTERIAL FLORA',
+    'GRAM POSITIVE BACTERIA'  # This is somewhat ambiguous but likely represents mixed Gram+ bacteria
+]
+
+# Function to categorize microorganism risk level
+def categorize_microbe(microbe):
+    microbe = microbe.upper()  # Ensure case insensitivity
+    if microbe in gram_negative_rods:
+        return 'gram_negative_rods'
+    elif microbe in gram_positive_cocci:
+        return 'gram_positive_cocci'
+    elif microbe in gram_positive_rods:
+        return 'gram_positive_rods'
+    elif microbe in fungi_yeasts:
+        return 'fungi_yeasts'
+    elif microbe in mixed_flora:
+        return 'mixed_flora'
+    else:
+        return 'Unknown'
+
+
+final['org_name'] = final['org_name'].astype(str)
+
+final['microbio_group']=final['org_name'].apply(categorize_microbe)
+final['microbio_group_comb']=final['microbio_group'].copy()
+
+# dummy variables of infections
+final = pd.get_dummies(final, columns=['microbio_group'], dummy_na=False,prefix='microbio_group')
+
+# dummy variables of characteristics
+final['gender'] = final['gender'].map({'F': 0, 'M': 1})
+
+final['marital_status'] = final['marital_status'].map({'MARRIED': 1, 'SINGLE': 0, 'WIDOWED':0,'DIVORCED':0})
+final['insurance'] = final['insurance'].map({'Private': 0, 'Medicare': 1,'Medicaid':1})
+# final['final_icustay'] = final['final_icustay'].map({'False': 0, 'True': 1})
+# final['emergency_admission_is_yes'] = final['emergency_admission_is_yes'].map({'False': 0, 'True': 1})
+final.head()
+
+for col in ['microbio_group_Unknown', 'microbio_group_fungi_yeasts',
+       'microbio_group_gram_negative_rods',
+       'microbio_group_gram_positive_cocci',
+       'microbio_group_gram_positive_rods', 'microbio_group_mixed_flora']:
+       final[col]=final[col].astype(int)
+final=final[['subject_id', 'gender', 'anchor_age', 'hadm_id', 'insurance',
+       'marital_status', 'stay_id', 'los', 'org_name', 'positive_culture', 'microbio_group_comb',
+       'microbio_group_Unknown', 'microbio_group_fungi_yeasts',
+       'microbio_group_gram_negative_rods',
+       'microbio_group_gram_positive_cocci',
+       'microbio_group_gram_positive_rods', 'microbio_group_mixed_flora']]
+
+ 
+final.to_csv("mimiciii_processed.csv")
