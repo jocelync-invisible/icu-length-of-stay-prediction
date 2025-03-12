@@ -1,4 +1,4 @@
-*ADSP 32014: Bayesian Machine Learning with Generative AI Applications: Final Project*
+**ADSP 32014: Bayesian Machine Learning with Generative AI Applications: Final Project**
 
 Team: Hidden-Layer-Heroes 
 
