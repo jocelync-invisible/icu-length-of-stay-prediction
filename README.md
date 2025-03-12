@@ -90,17 +90,20 @@ Descriptive Statistics
 <p align="center">
       <img src="https://github.com/user-attachments/assets/7ca129a7-ae2b-45e7-a845-847b6703f302" width="1000">
     </p>
+There are 2731 rows from our data. LOS ranges from 0-31 days.
 
 Data Overview by Positive Culture
 <p align="center">
       <img src="https://github.com/user-attachments/assets/e07108e1-32f2-4c97-877a-403ab527db1b" width="400">
     </p>
+There is data imbalance between positive and non-positive culture. The average los for positive culture is lower from the non-positive culture.
 
 
 Top 10 Microorganisms by Number of Stays
 <p align="center">
       <img src="https://github.com/user-attachments/assets/18286dab-ccc0-48a1-9bca-9439d1d1c014" width="500">
     </p>
+Yeast, Staph Aureus Coag, and Escherichia Coli are the top 3 microorganisms by highest number of stays.
 
 
 Correlation Heatmap
