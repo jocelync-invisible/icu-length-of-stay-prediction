@@ -105,20 +105,23 @@ Top 10 Microorganisms by Number of Stays
 
 Correlation Heatmap
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/430ea888-480c-475b-8c3e-8e235f04bc4c" width="500">
+      <img src="https://github.com/user-attachments/assets/58b82849-f7b8-4408-82b7-5ebdfa6121d7" width="500">
     </p>
+Generally, there are weak negative relationship among los and demographic and microbio group
+
 
 LOS Distribution Comparison Between Positive and Non-Positive Culture
 <p align="center">
       <img src="https://github.com/user-attachments/assets/765e9919-1b24-47be-9a8a-20b0fe25cdf9" width="700">
     </p>
+Los distribution for both culture is positively skewed, there is higher observations with shorter los for positive culture, but it might be affected by data imbalance as well
 
 PCA
 
-We decided to use PC7 as the threshold to explain at least 95% variance from our data
 <p align="center">
       <img src="https://github.com/user-attachments/assets/e91e9ac2-ec92-42ea-ab8b-efc43ab0d151" width="500">
     </p>
+We decided to use PC7 as the threshold to explain at least 95% variance from our data
 
 
 ## Model Selection
