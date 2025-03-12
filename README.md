@@ -1,4 +1,4 @@
-# Bayesian Machine Learning with Generative AI Applications: Final Project
+## Bayesian Machine Learning with Generative AI Applications: Final Project
 Team: Hidden-Layer-Heroes 
 
 Alexa Kung, Feby Hadayani, Qing Chen, Sara Chaker
