@@ -92,6 +92,7 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
     </p>
 There are 2731 rows from our data. LOS ranges from 0-31 days.
 
+
 **Data Overview by Positive Culture**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/e07108e1-32f2-4c97-877a-403ab527db1b" width="400">
@@ -118,6 +119,7 @@ Generally, there are weak negative relationship among los and demographic and mi
       <img src="https://github.com/user-attachments/assets/765e9919-1b24-47be-9a8a-20b0fe25cdf9" width="700">
     </p>
 Los distribution for both culture is positively skewed, there is higher observations with shorter los for positive culture, but it might be affected by data imbalance as well
+
 
 **PCA**
 <p align="center">
