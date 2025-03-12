@@ -88,7 +88,7 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 
 **Descriptive Statistics**
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/7ca129a7-ae2b-45e7-a845-847b6703f302" width="1000">
+      <img src="https://github.com/user-attachments/assets/7ca129a7-ae2b-45e7-a845-847b6703f302" width="700">
     </p>
 There are 2731 rows from our data. LOS ranges from 0-31 days.
 </p>
