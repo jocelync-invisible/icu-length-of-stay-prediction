@@ -108,6 +108,7 @@ LOS Distribution Comparison Between Positive and Non-Positive Culture
 
 
 PCA
+
 We decided to use PC9 as the threshold to explain at least 95% variance from our data
 <p align="left">
       <img src="https://github.com/user-attachments/assets/44acc8a1-426d-49ca-98d9-609e0c4f6e9d" width="500">
