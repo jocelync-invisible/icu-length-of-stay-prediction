@@ -86,41 +86,40 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 
 ## Exploratory Data Analysis
 
-Descriptive Statistics
+**Descriptive Statistics**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/7ca129a7-ae2b-45e7-a845-847b6703f302" width="1000">
     </p>
 There are 2731 rows from our data. LOS ranges from 0-31 days.
 
-Data Overview by Positive Culture
+**Data Overview by Positive Culture**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/e07108e1-32f2-4c97-877a-403ab527db1b" width="400">
     </p>
 There is data imbalance between positive and non-positive culture. The average los for positive culture is lower from the non-positive culture.
 
 
-Top 10 Microorganisms by Number of Stays
+**Top 10 Microorganisms by Number of Stays**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/18286dab-ccc0-48a1-9bca-9439d1d1c014" width="500">
     </p>
 Yeast, Staph Aureus Coag, and Escherichia Coli are the top 3 microorganisms by highest number of stays.
 
 
-Correlation Heatmap
+**Correlation Heatmap**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/58b82849-f7b8-4408-82b7-5ebdfa6121d7" width="500">
     </p>
 Generally, there are weak negative relationship among los and demographic and microbio group
 
 
-LOS Distribution Comparison Between Positive and Non-Positive Culture
+**LOS Distribution Comparison Between Positive and Non-Positive Culture**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/765e9919-1b24-47be-9a8a-20b0fe25cdf9" width="700">
     </p>
 Los distribution for both culture is positively skewed, there is higher observations with shorter los for positive culture, but it might be affected by data imbalance as well
 
-PCA
-
+**PCA**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/e91e9ac2-ec92-42ea-ab8b-efc43ab0d151" width="500">
     </p>
