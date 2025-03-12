@@ -64,7 +64,7 @@ Variables Lists
 | Marital_status  | Patient age on the admission (in years) |
 | Positive_culture  | Binary variable of microbio ifections (1: infected, 0: not infected)  |
 | Marital_status  | Marital status of patient on admission (1: Married, 0: Single, Widowed, Divorced)  |
-
+| Microbio_group  | Category of microbio infections (microbio_group_gram_negative_rods, microbio_group_gram_positive_cocci, microbio_group_gram_positive_rods, microbio_group_mixed_flora, microbio_group_fungi_yeasts   |
 
 
 
