@@ -83,6 +83,9 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 
 ## Exploratory Data Analysis
 
+add describe
+update with new data
+
 Data Overview by Positive Culture
 <p align="left">
       <img src="https://github.com/user-attachments/assets/b7623b9d-935f-4039-8d6b-237b63f6d4b3" width="400">
