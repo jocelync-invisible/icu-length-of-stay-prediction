@@ -54,6 +54,8 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
       <img src="https://github.com/user-attachments/assets/b76ebc77-f3ae-4de6-bd35-cf3e293380fd" width="500">
     </p>
 
+    There are 61 unique microorganism infections. We categorized them into 5 groups based on gram staining characteristics and morphological types: gram_negative_rods, gram_positive_cocci, gram_positive_rods, mixed_flora, and fungi_yeasts.
+
 
 #### Merging process:
   1. Join patients and admissions table on subject_id
@@ -78,7 +80,7 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
 | Marital_status  | Patient age on the admission (in years) |
 | Positive_culture  | Binary variable of bacterial infections (1: infected, 0: not infected)  |
 | Marital_status  | Marital status of patient on admission (1: Married, 0: Single, Widowed, Divorced)  |
-| Microbio_group  | Category of bacterial infections (microbio_group_gram_negative_rods, microbio_group_gram_positive_cocci, microbio_group_gram_positive_rods, microbio_group_mixed_flora, microbio_group_fungi_yeasts   |
+| Microbio_group  | Category of bacterial infections (microbio_group_gram_negative_rods, microbio_group_gram_positive_cocci, microbio_group_gram_positive_rods, microbio_group_mixed_flora, microbio_group_fungi_yeasts)   |
 
 
 
