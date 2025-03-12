@@ -1,1 +1,136 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+final=pd.to_csv("mimiccomb_processed.csv")
+final.drop('Unnamed: 0', axis=1, inplace=True)
+
+sns.heatmap(final[['gender','anchor_age','insurance','marital_status','los','positive_culture','microbio_group_Unknown', 'microbio_group_fungi_yeasts',
+       'microbio_group_gram_negative_rods',
+       'microbio_group_gram_positive_cocci',
+       'microbio_group_gram_positive_rods', 'microbio_group_mixed_flora']].corr())
+
+
+
+# Set the number of columns for the subplot (2 for positive_culture = 0 and 1)
+num_columns = 2
+
+# Loop through the specified columns
+for col in ['gender', 'insurance', 'marital_status']:
+    # plt.figure(figsize=(12,6))  # Create a new figure for each column
+
+    # Loop for positive_culture values 0 and 1
+    for culture_value, i in zip([0, 1], [1, 2]):
+        plt.subplot(1, num_columns, i)  # Create subplots side by side
+        # Filter data based on the positive_culture value
+        filtered_data = final[final['positive_culture'] == culture_value]
+
+        # Create the bar plot
+        plt.bar(filtered_data[col].value_counts().index, filtered_data[col].value_counts())
+        plt.title(f"{col} (positive_culture = {culture_value})")
+        plt.xticks(rotation=90)
+
+    # Adjust layout and show the plots side by side
+    plt.tight_layout()
+    plt.show()
+
+plt.scatter(final['los'],final['positive_culture'])
+plt.xlabel('los')
+plt.ylabel('positive_culture')
+plt.show()
+
+plt.scatter(final['los'],final['marital_status'])
+plt.xlabel('los')
+plt.ylabel('marital_status')
+plt.show()
+
+plt.scatter(final['los'],final['gender'])
+plt.xlabel('los')
+plt.ylabel('gender')
+plt.show()
+
+plt.scatter(final['los'],final['insurance'])
+plt.xlabel('los')
+plt.ylabel('insurance')
+plt.show()
+
+import matplotlib.pyplot as plt
+
+#los distriution by positive culture
+# Create a figure with side-by-side subplots
+plt.figure(figsize=(12, 6))
+
+# Plot for positive_culture == 0
+plt.subplot(1, 2, 1)
+plt.hist(final.query("positive_culture == 0")['los'], color='blue', alpha=0.7)
+plt.title('LOS for positive_culture = 0')
+plt.xlabel('Length of Stay (LOS)')
+plt.ylabel('Frequency')
+
+# Plot for positive_culture == 1
+plt.subplot(1, 2, 2)
+plt.hist(final.query("positive_culture == 1")['los'], color='red', alpha=0.7)
+plt.title('LOS for positive_culture = 1')
+plt.xlabel('Length of Stay (LOS)')
+plt.ylabel('Frequency')
+
+# Adjust layout and show the plots side by side
+plt.tight_layout()
+plt.show()
+
+
+# anchor age distribution by positive culture
+# Create a figure with side-by-side subplots
+plt.figure(figsize=(12, 6))
+
+# Plot for positive_culture == 0
+plt.subplot(1, 2, 1)
+plt.hist(final.query("positive_culture == 0")['anchor_age'], color='blue', alpha=0.7)
+plt.title('Anchor Age for positive_culture = 0')
+plt.xlabel('Length of Stay (LOS)')
+plt.ylabel('Frequency')
+
+# Plot for positive_culture == 1
+plt.subplot(1, 2, 2)
+plt.hist(final.query("positive_culture == 1")['anchor_age'], color='red', alpha=0.7)
+plt.title('Anchor Age for positive_culture = 1')
+plt.xlabel('Length of Stay (LOS)')
+plt.ylabel('Frequency')
+
+# Adjust layout and show the plots side by side
+plt.tight_layout()
+plt.show()
+
+
+agg_explode_sub=final.groupby("subject_id").agg({'stay_id':'nunique','org_name':'nunique'}).sort_values(by='org_name',ascending=False).reset_index()
+agg_explode_sub
+
+agg_explode=final.groupby("org_name").agg({'stay_id':'nunique','subject_id':'nunique'}).sort_values(by='stay_id',ascending=False).reset_index().head(10)
+agg_explode
+
+# Top 10 Microbio by Stays and subject
+plt.figure(figsize=(12, 10))  # Adjust figure size for better readability
+
+plt.subplot(1, 2, 1)
+plt.bar(agg_explode['org_name'], agg_explode['stay_id'])
+plt.title("Top 10 Microorganisms by Number of Stays")
+plt.xlabel("Microorganisms")
+plt.ylabel("Number of stays")
+plt.xticks(rotation=90)
+
+plt.subplot(1,2,2)
+plt.bar(agg_explode['org_name'], agg_explode['subject_id'])
+plt.title("Top 10 Microorganisms by Number of Subjects")
+plt.xlabel("Microorganisms")
+plt.ylabel("Number of subjects")
+plt.xticks(rotation=90)
+
+plt.tight_layout()  # Adjust subplot params for a tight layout
+plt.show()
+
+final.org_name.isnull().sum()
+
+final.groupby(['microbio_group_comb']).agg({'stay_id':'nunique','hadm_id':'nunique','subject_id':'nunique'}).sort_values(by='stay_id',ascending=False).reset_index()
+
 
