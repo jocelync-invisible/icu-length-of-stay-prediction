@@ -23,41 +23,45 @@ MIMIC-IV: https://physionet.org/content/mimic-iv/1.0/
 This project aims to predict LOS in the ICU using the MIMIC-III and MIMIC-IV datasets, with a focus on infections and demographics. Therefore, both the ICU dataset and hospital dataset were obtained and utilized in this project. Microbiology data, which includes information on patient cultures, test results, and the names of infection-causing organisms was used. Since factors beyond bacterial infections can affect LOS, demographic variables such as age, gender, marital status, and insurance type were also considered.
 
 
-## EDA(2.5mins)
+## Data Preprocessing 
 
-### Merging Tables:
+### Merging Tables
 
 To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU, we merged the following tables: 
-- admissions: gives information regarding a patient’s admission to the hospital, includes demographic information. The unique identifier is hadm_id
+
+- "admissions": gives information regarding a patient’s admission to the hospital, includes demographic information. The unique identifier is hadm_id
   - Columns used: subject_id, hadm_id, insurance, marital_status
     
     ![image](https://github.com/user-attachments/assets/3e0ee544-6e55-46ec-8377-015fbdc01283)
 
-- patients: information about gender and age identified by subject_id
+- "patients": information about gender and age identified by subject_id
   - Columns used: subject_id, gender, age
     
     ![image](https://github.com/user-attachments/assets/f2865c69-d60f-4ae5-9109-3d2ffa0f5cde)
 
-- icustay: defines each ICU stay in the database using STAY_ID, including admission, discharge, and length of stay
+- "icustay": defines each ICU stay in the database using STAY_ID, including admission, discharge, and length of stay
   - Columns used: subject_id, hadm_id, stay_id, los
     
     ![image](https://github.com/user-attachments/assets/f5be437b-8062-4f17-931b-9318ce798839)
 
-- microbiologyevents: contains infectious growth from blood sample
+- "microbiologyevents": contains infectious growth from blood sample
   - Columns used: subject_id, hadm_id, org_name (list of infections)
     
     ![image](https://github.com/user-attachments/assets/b76ebc77-f3ae-4de6-bd35-cf3e293380fd)
 
-- Merging process:
+
+#### Merging process:
   1. Join patients and admissions table on subject_id
   2. Join the above table to icustays table on subject_id and hadm_id
   3. Join the above table to microbiology events table on subject_id and hadm_id
 
-- Final Dataset:
+
+#### Final Dataset:
   
   ![image](https://github.com/user-attachments/assets/2ad09f49-41a4-4679-a3ac-ac1f057ab19c)
 
-Variables Lists
+
+#### Variables Lists
 
 | Variables  | Description |
 | ------------- | ------------- |
@@ -72,7 +76,8 @@ Variables Lists
 
 
 
-### EDA steps:(2.5mins)
+## Exploratory Data Analysis
+
 Data Overview by Positive Culture
 
 ![image](https://github.com/user-attachments/assets/b7623b9d-935f-4039-8d6b-237b63f6d4b3)
@@ -85,8 +90,8 @@ Top 10 Microorganism by Number of Stays
 
 Correlation Heatmap
 
-
 ![image](https://github.com/user-attachments/assets/da98a098-5d18-4201-aad9-f438d164764b)
+
 
 LOS Distribution Comparison Between Positive and Non Positive Culture
 
@@ -109,9 +114,7 @@ Bayesian linear regression extends traditional linear regression by incorporatin
 In this analysis, the independent variables (X) are the principal components (PC1–PC9), which were derived through Principal Component Analysis (PCA) to reduce dimensionality and mitigate collinearity among the original predictors. The dependent variable (Y) is LOS.
 
 
-We implements Bayesian linear regression using PyMC to provide full probability distributions rather than just point estimates.
-
-**Model Architecture**
+#### Model Architecture
 
 The model follows a Bayesian framework with:
 
@@ -134,17 +137,20 @@ y ~ Normal(α + Xβ, σ)
 - Posterior: Updated beliefs after observing data, obtained through MCMC sampling
 ![image](https://github.com/user-attachments/assets/9504e7b2-2d67-4906-a51f-bb1df333772e)
 
-**Model Performance**
+* Full probability distributions were obtained using PyMC
 
-RMSE Test: 0.9432375826569617
+#### Model Performance
 
-R^2 Test: 0.12356540029771512
+- RMSE Test: 0.9432375826569617
 
-RMSE Training: 0.9092801630996732
+- R^2 Test: 0.12356540029771512
 
-R^2 Training: 0.17004178873982456
+- RMSE Training: 0.9092801630996732
+
+- R^2 Training: 0.17004178873982456
 
 ![image](https://github.com/user-attachments/assets/00518d18-6ca4-4ff9-9f58-3cf9949a1bed)
+
 
 
 
@@ -154,7 +160,7 @@ Bayesian Neural Networks (BNNs) are a type of neural network that applies Bayesi
 
 For this analysis, we chose to implement a BNN in addition to a Bayesian linear regression to enhance the robustness of our ICU LOS predictions. Given the limited size of our dataset, a BNN offers a solution by mitigating overfitting, improving generalization, and providing meaningful uncertainty estimates, making it a suitable choice for this predictive modeling task.
 
-**Model Architecture**
+#### Model Architecture
 
 The Bayesian Neural Network consists of:
 
@@ -167,7 +173,7 @@ The Bayesian Neural Network consists of:
 
 The model uses L2 regularization (0.0001) to prevent overfitting and the Adam optimizer with a learning rate of 0.01. Mean Absolute Error (MAE) is used as the loss function.
 
-**Training Process**
+#### Training Process 
 
 The model was trained with the following callbacks:
 
@@ -176,13 +182,13 @@ The model was trained with the following callbacks:
 
 ![Image](https://github.com/user-attachments/assets/df0d50eb-fdf4-43be-8d3d-329eedd84821)
 
-**Uncertainty Estimation**
+#### Uncertainty Estimation
 
 Uncertainty is estimated using Monte Carlo Dropout with 100 forward passes during inference. This provides both the mean prediction and standard deviation for each sample.
 
 ![Image](https://github.com/user-attachments/assets/28513fe7-ab15-41a9-afb4-fd07041f9408)
 
-**Model Performance**
+#### Model Performance
 
 Performance metrics on the test set (original scale - days):
 
@@ -200,13 +206,14 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
 ## Model Comparison and Reflections/Lessons Learned 
 
+
 ### Bayesian Linear Regression Outperforms All Other Tested Models
 
 
 
 ### Reflection on Modeling Approach & Lessons Learned
 
-1. Data-Related Challenges
+#### 1. Data-Related Challenges
 
   **Importance of Feature Selection**
 
@@ -217,13 +224,13 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
   One of the biggest challenges in our analysis was the relatively small sample size of the dataset. Given the complexity of ICU LOS prediction, having more data would have been beneficial for improving generalization and model stability. The small dataset increased the risk of overfitting, particularly for our Bayesian Neural Network (BNN), which typically requires more data to fully capture complex patterns. 
 
 
-2. Model-Related Challenges
+#### 2. Model-Related Challenges
 
 
 
 
 
-3. Lessons Learned
+#### 3. Lessons Learned
 
   **Modeling ICU LOS is Complex**
 
@@ -234,15 +241,15 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
 ## Next Steps and Future Directions
 
-**Expanding the Dataset**
+### Expanding the Dataset 
 
 A key limitation of our study was the dataset size. Future research could involve collecting the complete MIMIC-III and IV dataset to improve model robustness. More data would allow for better generalization and enable more complex modeling techniques without the risk of overfitting.
 
-**Explore Other Bayesian Models**
+### Explore Other Bayesian Models
 
 While we used Bayesian Linear Regression and Bayesian Neural Networks, other probabilistic models could also be explored. For example, hierarchical Bayesian models could capture patient-level variations, and Gaussian processes could provide a non-parametric Bayesian approach for modeling ICU LOS. Additionally, our current models assume a linear relationship between principal components and LOS, but real-world clinical data often exhibits non-linearity. Exploring Bayesian non-linear models, such as Bayesian splines or tree-based methods like Bayesian Additive Regression Trees (BART), could potentially yield better predictive performance.
 
-**Bridging the Gap Between Predictions and Clinical Expertise for Greater Applicability**
+### Bridging the Gap Between Predictions and Clinical Expertise for Greater Applicability
 
 While some of us have prior experience in the healthcare field, our feature selection and modeling process would have benefitted from deeper collaboration with clinicians. Incorporating additional clinical variables—such as treatment interventions or lab results could provide a more comprehensive picture of factors influencing ICU LOS for infections. Moreover, clinical input is essential to ensure that the model’s predictions align with real-world decision-making. Without incorporating expert domain knowledge, even the most sophisticated model risks producing results that lack practical relevance. Future iterations of this project should prioritize collaborations with healthcare professionals to refine model inputs and ensure its applicability in a clinical setting.
 
