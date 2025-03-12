@@ -146,7 +146,7 @@ Performance metrics on the test set (original scale - days):
 
 ![Image](https://github.com/user-attachments/assets/eee96f23-0029-4477-acfa-8e3e84c92bec)
 
-Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall performance is limited (R-squared: 0.049), likely because of data volume. Despite this, the BNN helps doctors by showing not just how long a patient might stay, but also how confident we are in that prediction. This uncertainty information, shown through confidence intervals, works alongside our other models to help hospitals plan better.
+Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall performance is limited (R-squared: 0.049), likely because of data volume. Despite this, the BNN's result still very useful for doctors because it shows not just how long a patient might stay, but also how confident we are in that prediction.
 
 ### Challenges and Model Comparison(1.5mins)
 
