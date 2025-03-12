@@ -1,22 +1,22 @@
 # Bayesian ML Project
 Team: Hidden-Layer-Heroes 
 
-## Overview/ problem statemnt (1min)
-(explain why los   and infectionss, inocation(litureature review shows most people focusing on using diagonosis data)
-This project focuses on predicting Length of Stay (LOS) in the ICU using MIMIC-III and MIMIC-IV datasets, with a focus on infections and demographics. Infections, identified through microbiology cultures, are potentially important factors influencing ICU stay duration, although their exact impact on LOS is still being explored.
+## Overview & Problem Statement
 
-In addition to microbiology data, demographic factors such as age, gender, marital status, and insurance type are considered, as they may also play a role in predicting ICU outcomes.
+The aim of this project is to develop a model that utilizes Bayesian methods to predict a patient's length of stay (los) in the Intensive Care Unit (ICU) using de-identified public in-patient datasets, MIMIC-III and MIMIC-IV. Current literature has explored the application of Bayesian methods for predicting various outcomes related to disease severity and ICU stays. However, most studies have focused on specific diagnoses. Therefore, in this project, we aim to investigate the effect of infection-causing bacteria on a patient’s LOS in the ICU.
 
-By applying Bayesian modeling, we aim to integrate both microbiology culture and demographic data, accounting for uncertainty in the results. This approach will help refine predictions of ICU LOS, supporting healthcare professionals in making more informed decisions about resource allocation and patient care.
+Bayesian modeling is particularly well-suited for investigating this problem as Bayesian methods are most effective when uncertainty is high and prior data can help refine future outcomes. By applying different Bayesian approaches that account for uncertainty, we aim to utilize and incorporate microbiological culture data and patient demographics to refine ICU LOS predictions. This, in turn, can aid clinicians develop more targeted and personalized treatment plans for patients with serious and/or multiple infections, given that the precise impact of specific bacteria on LOS is not yet well understood.
+
 
 ## Dataset 
-In this project, we gather information from the MIMIC-III and MIMIC-IV demo datasets. MIMIC is a database comprising deidentified health-related data with patients who stayed in critical care units of the Beth Israel Deaconess Medical Center. MIMIC III contains data between 2001 and 2012, while MIMIC IV contains data for anchor age group 2011-2013 or 2014-2016. Both datasets consist of over 26 tables. The demo datasets used for this project contain records for 100 patients from each MIMIC-III and MIMIC-IV, that are selected randomly. 
+
+Data for this project was obtained from the MIMIC-III and MIMIC-IV demo datasets. MIMIC is a database comprising de-identified patient data from critical care units at Beth Israel Deaconess Medical Center. MIMIC-III includes data from 2001 to 2012, while MIMIC-IV contains data for patients admitted between 2011 and 2016. Both datasets consist of over 26 tables. The demo datasets used in this project contain records for 100 patients from each of MIMIC-III and MIMIC-IV, randomly selected from the full dataset.
 
 MIMIC-III: https://physionet.org/content/mimic-iii-clinical-database/1.4/
 
 MIMIC-IV: https://physionet.org/content/mimic-iv/1.0/
 
-
+This project aims to predict LOS in the ICU using the MIMIC-III and MIMIC-IV datasets, with a focus on infections and demographics. Therefore, both the ICU dataset and hospital dataset were obtained and utilized in this project. Microbiology data, which includes information on patient cultures, test results, and the names of infection-causing organisms was used. Since factors beyond bacterial infections can affect LOS, demographic variables such as age, gender, marital status, and insurance type were also considered.
 
 
 ## EDA(2.5mins)
@@ -97,13 +97,16 @@ We decided to use PC9 as the threshold to explain at least 95% variance from our
 
 ## Models(5min)
 
-### model selction (1min)
-#### Baysian linear regression(2min) 
+### Model Selection
+
+#### Bayesian Linear Regression  
+
+
 
 specify independent/ dependent variables (ie PC1-9 as X and los as y)
 intro of BLS
-why we do linear regression and why baysian is better( provide more information etc)
-sepcify prior and postrior distribustion -> the posterior prediction distribution
+why we do linear regression and why bayesian is better( provide more information etc)
+specify prior and posterior distribution -> the posterior prediction distribution
 interpretation of result
 
 ### BNN (brief introduction 30 sec)
@@ -117,12 +120,12 @@ intro of BNN
 ### Challenges and Model Comparison(1.5mins)
 
 ## Next Step(1min)
- Try differnt models(ie  nonnbaysain ones)
- try differnt prior distriburion
+ Try different models(ie  non-bayesian ones)
+ try different prior distribution
  try different prior distributions
  Get more data from the MIMIC III and IV
 
- Based on the uncertainty of the result, we can proprose otehr suggestions
+ Based on the uncertainty of the result, we can propose other suggestions
  
  
 
