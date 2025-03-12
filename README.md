@@ -250,8 +250,13 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 ## Model Comparison and Reflections/Lessons Learned 
 
 
-### Bayesian Linear Regression Outperforms All Other Tested Models
+### Bayesian Neural Network Outperforms All Other Tested Models
 
+Comparing the two models we ran, the Bayesian Neural Network (BNN) outperformed the Bayesian linear regression substantially. The R^2 for the BNN was nearly four times larger than the R^2 for the Bayesian linear regression, indicating that the BNN was able to explain a significantly larger proportion of the variance in our data.
+
+This result aligns with our initial hypothesis when selecting models for this project, as we anticipated that the BNN’s capacity for capturing complex, non-linear relationships would lead to superior predictive performance compared to a Bayesian linear regression. 
+
+However, while the performance difference is clear, it is important to note the trade-offs associated with each approach. With a Bayesian linear regression, despite its lower R^2, offers greater interpretability, lower computational cost, and robustness in scenarios with limited data. In contrast, the BNN, while more powerful, requires significantly more computational resources, hyperparameter tuning, and training time.
 
 
 ### Reflection on Modeling Approach & Lessons Learned
@@ -264,13 +269,13 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
   **Limited Dataset Size**
 
-  One of the biggest challenges in our analysis was the relatively small sample size of the dataset. Given the complexity of ICU LOS prediction, having more data would have been beneficial for improving generalization and model stability. The small dataset increased the risk of overfitting, particularly for our Bayesian Neural Network (BNN), which typically requires more data to fully capture complex patterns. 
+  One of the major challenges in our analysis was the relatively small sample size of the dataset. Given the complexity of ICU LOS prediction, having more data would have been beneficial for improving generalization and model stability. The small dataset increased the risk of overfitting, particularly for our Bayesian Neural Network (BNN), which typically requires more data to fully capture complex patterns. Notably, when we incorporated additional data from MIMIC-IV, we observed significant improvements in model performance compared to using only MIMIC-III. 
 
 
 #### 2. Model-Related Challenges
 
-
-
+  **Unknown Prior Distribution**
+  A notable limitation in this project was the uncertainty surrounding the choice of prior distributions, specifically in the Bayesian linear regression model. Bayesian methods rely on prior beliefs regarding the parameters before observing the data. In this study, we chose to use a normal distribution as the prior for the coefficients in our regression model. While this is a standard choice, it is unclear whether this truly reflects the underlying distribution. If the real-world distribution of the parameters deviates from the assumed normal prior, then the model''s estimates and predications may be suboptimal or an inapplicable. 
 
 
 #### 3. Lessons Learned
@@ -281,20 +286,23 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
 
 
-
 ## Next Steps and Future Directions
 
 ### Expanding the Dataset 
 
-A key limitation of our study was the dataset size. Future research could involve collecting the complete MIMIC-III and IV dataset to improve model robustness. More data would allow for better generalization and enable more complex modeling techniques without the risk of overfitting.
+A key limitation of our study was the dataset size. Future research could involve collecting the complete MIMIC-III and IV dataset to improve model robustness. More data would allow for better generalization and enable more complex modeling techniques without the risk of overfitting. Additionally, the most recent data used in this project was from 2016, therefore incorporating more recent data could further improve the generalizability of the findings.
 
 ### Explore Other Bayesian Models
 
-While we used Bayesian Linear Regression and Bayesian Neural Networks, other probabilistic models could also be explored. For example, hierarchical Bayesian models could capture patient-level variations, and Gaussian processes could provide a non-parametric Bayesian approach for modeling ICU LOS. Additionally, our current models assume a linear relationship between principal components and LOS, but real-world clinical data often exhibits non-linearity. Exploring Bayesian non-linear models, such as Bayesian splines or tree-based methods like Bayesian Additive Regression Trees (BART), could potentially yield better predictive performance.
+While we used Bayesian Linear Regression and Bayesian Neural Networks, other probabilistic models could also be explored. For example, hierarchical Bayesian models could capture patient-level variations, and Gaussian processes could provide a non-parametric Bayesian approach for modeling ICU LOS. 
+
+Additionally, our current models assume a linear relationship between principal components and LOS, but real-world clinical data often exhibits non-linearity. Exploring Bayesian non-linear models, such as Bayesian splines or tree-based methods like Bayesian Additive Regression Trees (BART), could potentially yield better predictive performance.
 
 ### Bridging the Gap Between Predictions and Clinical Expertise for Greater Applicability
 
-While some of us have prior experience in the healthcare field, our feature selection and modeling process would have benefitted from deeper collaboration with clinicians. Incorporating additional clinical variables—such as treatment interventions or lab results could provide a more comprehensive picture of factors influencing ICU LOS for infections. Moreover, clinical input is essential to ensure that the model’s predictions align with real-world decision-making. Without incorporating expert domain knowledge, even the most sophisticated model risks producing results that lack practical relevance. Future iterations of this project should prioritize collaborations with healthcare professionals to refine model inputs and ensure its applicability in a clinical setting.
+While some of us have prior experience in the healthcare field, our feature selection and modeling process would have benefitted from deeper collaboration with clinicians. Incorporating additional clinical variables—such as treatment interventions or lab results could provide a more comprehensive picture of factors influencing ICU LOS for infections. 
+
+Clinical input is essential to ensure that the model’s predictions align with real-world decision-making. Without incorporating expert domain knowledge, even the most sophisticated model risks producing results that lack practical relevance. Future iterations of this project should prioritize collaborations with healthcare professionals to refine model inputs and ensure its applicability in a clinical setting.
 
  
 
