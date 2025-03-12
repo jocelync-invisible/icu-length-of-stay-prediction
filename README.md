@@ -30,31 +30,31 @@ This project aims to predict LOS in the ICU using the MIMIC-III and MIMIC-IV dat
 
 To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU, we merged the following tables: 
 
-- "admissions": gives information regarding a patient’s admission to the hospital, includes demographic information. The unique identifier is hadm_id
+- "admissions": information regarding a patient’s admission to the hospital. Includes demographic information. The unique identifier is hadm_id
   - Columns used: subject_id, hadm_id, insurance, marital_status
         <p align="center">
       <img src="https://github.com/user-attachments/assets/3e0ee544-6e55-46ec-8377-015fbdc01283" width="370">
     </p>
 
-- "patients": information about gender and age identified by subject_id
+- "patients": information about gender and age identified by subject_id.
   - Columns used: subject_id, gender, age
     <p align="center">
       <img src="https://github.com/user-attachments/assets/f2865c69-d60f-4ae5-9109-3d2ffa0f5cde" width="250">
     </p>
 
-- "icustay": defines each ICU stay in the database using STAY_ID, including admission, discharge, and length of stay
+- "icustay": defines each ICU stay in the database using STAY_ID. Includes information regarding a patient's admission, discharge, and length of stay.
   - Columns used: subject_id, hadm_id, stay_id, los
     <p align="center">
       <img src="https://github.com/user-attachments/assets/f5be437b-8062-4f17-931b-9318ce798839" width="320">
     </p>
 
-- "microbiologyevents": contains infectious growth from blood sample
+- "microbiologyevents": contains infectious growth from a patient's blood sample. 
   - Columns used: subject_id, hadm_id, org_name (list of infections)
     <p align="center">
       <img src="https://github.com/user-attachments/assets/b76ebc77-f3ae-4de6-bd35-cf3e293380fd" width="500">
     </p>
 
-    There are 61 unique microorganism infections. We categorized them into 5 groups based on gram staining characteristics and morphological types: gram_negative_rods, gram_positive_cocci, gram_positive_rods, mixed_flora, and fungi_yeasts.
+    There are 61 unique infection-causing bacteria. We categorized them into 5 groups based on gram-staining characteristics and morphological types: gram_negative_rods, gram_positive_cocci, gram_positive_rods, mixed_flora, and fungi_yeasts.
 
 
 #### Merging process:
@@ -63,13 +63,19 @@ To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU,
   3. Join the above table to the microbiology events table on subject_id and hadm_id
 
 
+#### Principal Component Analysis to Reduce Dimensionality
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/e91e9ac2-ec92-42ea-ab8b-efc43ab0d151" width="500">
+    </p>
+After running a PCA to reduce the dimensionality of the variables, we chose to use 7 principal components as this threshold explains at least 95% variance from our data. 
+
 #### Final Dataset:
   <p align="center">
       <img src="https://github.com/user-attachments/assets/2ad09f49-41a4-4679-a3ac-ac1f057ab19c" width="800">
     </p>
 
 
-#### Variables Lists
+#### Final Variables List
 
 | Variables  | Description |
 | ------------- | ------------- |
@@ -111,22 +117,17 @@ Yeast, Staph Aureus Coag, and Escherichia Coli are the top 3 microorganisms by h
 <p align="center">
       <img src="https://github.com/user-attachments/assets/58b82849-f7b8-4408-82b7-5ebdfa6121d7" width="500">
     </p>
-Generally, there are weak negative relationship among los and demographic and microbio group
+Generally, there are weak negative relationships among LOS, patients demographics, and the bacterial group. 
 </p>
 
-**LOS Distribution Comparison Between Positive and Non-Positive Culture**
+**LOS Distribution Comparison Between Positive and Negative Cultures**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/765e9919-1b24-47be-9a8a-20b0fe25cdf9" width="700">
     </p>
-Los distribution for both culture is positively skewed, there is higher observations with shorter los for positive culture, but it might be affected by data imbalance as well
+Los distribution for both positive and negative cultures is positively skewed. There are higher observations with shorter LOS for patients with a positive culture, but this observation might be affected by the overall data imbalance. 
 </p>
 
-**PCA**
-<p align="center">
-      <img src="https://github.com/user-attachments/assets/e91e9ac2-ec92-42ea-ab8b-efc43ab0d151" width="500">
-    </p>
-We decided to use PC7 as the threshold to explain at least 95% variance from our data
-</p>
+
 
 ## Model Selection
 
@@ -190,7 +191,7 @@ The model follows a Bayesian framework with:
 
 ### 2. Bayesian Neural Network (BNN)
 
-Bayesian Neural Networks (BNNs) are a type of neural network that applies Bayesian inference to learn a probability distribution over its weights. Unlike traditional neural networks, which rely on fixed point estimates, BNNs account for uncertainty in its parameters and produces probabilistic predictions. This allows for a more robust predictions, specifically in cases with small datasets or noisy data. 
+Bayesian Neural Networks (BNNs) are a type of neural network that applies Bayesian inference to learn a probability distribution over its weights. Unlike traditional neural networks, which rely on fixed point estimates, BNNs account for uncertainty in its parameters and produces probabilistic predictions. This allows for more robust predictions, specifically in cases with small datasets or noisy data. 
 
 For this analysis, we chose to implement a BNN in addition to a Bayesian linear regression to enhance the robustness of our ICU LOS predictions. Given the limited size of our dataset, a BNN offers a solution by mitigating overfitting, improving generalization, and providing meaningful uncertainty estimates, making it a suitable choice for this predictive modeling task.
 
@@ -242,7 +243,7 @@ Performance metrics on the test set (original scale - days):
     </p>
 
 
-Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall is moderately good performance (R-squared: 0.706). Despite this, the BNN's result still very useful for doctors because it shows not just how long a patient might stay, but also how confident we are in that prediction.
+Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall performance is moderately good (R-squared: 0.706). Despite this, the BNN's result is still very useful for doctors because it shows not just how long a patient might stay but also how confident we are in that prediction.
 
 
 
@@ -252,11 +253,9 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
 ### Bayesian Neural Network Outperforms All Other Tested Models
 
-Comparing the two models we ran, the Bayesian Neural Network (BNN) outperformed the Bayesian linear regression substantially. The R^2 for the BNN was nearly four times larger than the R^2 for the Bayesian linear regression, indicating that the BNN was able to explain a significantly larger proportion of the variance in our data.
+Comparing the two models we ran, the Bayesian Neural Network (BNN) outperformed the Bayesian linear regression substantially. The R^2 for the BNN was nearly four times larger than the R^2 for the Bayesian linear regression, indicating that the BNN was able to explain a significantly larger proportion of the variance in our data. This result aligns with our initial hypothesis when selecting models for this project, as we anticipated that the BNN’s capacity for capturing complex, non-linear relationships would lead to superior predictive performance compared to a Bayesian linear regression. 
 
-This result aligns with our initial hypothesis when selecting models for this project, as we anticipated that the BNN’s capacity for capturing complex, non-linear relationships would lead to superior predictive performance compared to a Bayesian linear regression. 
-
-However, while the performance difference is clear, it is important to note the trade-offs associated with each approach. With a Bayesian linear regression, despite its lower R^2, offers greater interpretability, lower computational cost, and robustness in scenarios with limited data. In contrast, the BNN, while more powerful, requires significantly more computational resources, hyperparameter tuning, and training time.
+However, while the performance difference is clear, it is important to note the trade-offs associated with each approach. With a Bayesian linear regression, despite its lower R^2, it offers greater interpretability, lower computational cost, and robustness in scenarios with limited data. In contrast, the BNN, while more powerful, requires significantly more computational resources, hyperparameter tuning, and training time.
 
 
 ### Reflection on Modeling Approach & Lessons Learned
@@ -275,7 +274,7 @@ However, while the performance difference is clear, it is important to note the 
 #### 2. Model-Related Challenges
 
   **Unknown Prior Distribution**
-  A notable limitation in this project was the uncertainty surrounding the choice of prior distributions, specifically in the Bayesian linear regression model. Bayesian methods rely on prior beliefs regarding the parameters before observing the data. In this study, we chose to use a normal distribution as the prior for the coefficients in our regression model. While this is a standard choice, it is unclear whether this truly reflects the underlying distribution. If the real-world distribution of the parameters deviates from the assumed normal prior, then the model''s estimates and predications may be suboptimal or an inapplicable. 
+  A notable limitation of this project was the uncertainty surrounding the choice of prior distributions, specifically in the Bayesian linear regression model. Bayesian methods rely on prior beliefs regarding the parameters before observing the data. In this study, we chose to use a normal distribution as the prior for the coefficients in our regression model. While this is a standard choice, it is unclear whether this truly reflects the underlying distribution. If the real-world distribution of the parameters deviates from the assumed normal prior, then the model's estimates and predictions may be suboptimal or inapplicable. 
 
 
 #### 3. Lessons Learned
@@ -290,7 +289,7 @@ However, while the performance difference is clear, it is important to note the 
 
 ### Expanding the Dataset 
 
-A key limitation of our study was the dataset size. Future research could involve collecting the complete MIMIC-III and IV dataset to improve model robustness. More data would allow for better generalization and enable more complex modeling techniques without the risk of overfitting. Additionally, the most recent data used in this project was from 2016, therefore incorporating more recent data could further improve the generalizability of the findings.
+A key limitation of our study was the dataset size. Future research could involve collecting the complete MIMIC-III and IV dataset to improve model robustness. More data would allow for better generalization and enable more complex modeling techniques without the risk of overfitting. Additionally, the most recent data used in this project was from 2016; therefore, incorporating more recent data could further improve the generalizability of the findings.
 
 ### Explore Other Bayesian Models
 
@@ -302,7 +301,7 @@ Additionally, our current models assume a linear relationship between principal 
 
 While some of us have prior experience in the healthcare field, our feature selection and modeling process would have benefitted from deeper collaboration with clinicians. Incorporating additional clinical variables—such as treatment interventions or lab results could provide a more comprehensive picture of factors influencing ICU LOS for infections. 
 
-Clinical input is essential to ensure that the model’s predictions align with real-world decision-making. Without incorporating expert domain knowledge, even the most sophisticated model risks producing results that lack practical relevance. Future iterations of this project should prioritize collaborations with healthcare professionals to refine model inputs and ensure its applicability in a clinical setting.
+Clinical input is essential to ensure the model’s predictions align with real-world decision-making. Without incorporating expert domain knowledge, even the most sophisticated model risks producing results that lack practical relevance. Future iterations of this project should prioritize collaborations with healthcare professionals to refine model inputs and ensure its applicability in a clinical setting.
 
  
 
