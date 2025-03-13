@@ -324,6 +324,10 @@ While some of us have prior experience in the healthcare field, our feature sele
 
 Clinical input is essential to ensure the model’s predictions align with real-world decision-making. Without incorporating expert domain knowledge, even the most sophisticated model risks producing results that lack practical relevance. Future iterations of this project should prioritize collaborations with healthcare professionals to refine model inputs and ensure its applicability in a clinical setting.
 
+## References
+Paper: https://aiforsocialgood.github.io/icml2019/accepted/track1/pdfs/38_aisg_icml2019.pdf
+https://github.com/Pacmed/aisg_2019/blob/master/README.md
+
  
 
 
