@@ -308,7 +308,7 @@ A notable limitation of this project was the uncertainty surrounding the choice 
 
 #### 3. Lessons Learned
 
-**Modeling ICU LOS is Complex**
+***Modeling ICU LOS is Complex***
 
 Predicting ICU length of stay involves multiple factors beyond what our dataset captured. Patient outcomes are influenced by numerous variables, including treatment protocols, comorbidities, and hospital-specific factors that were not included in our dataset. This limitation highlighted the importance of integrating clinical expertise into our analysis.
 
