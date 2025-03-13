@@ -179,9 +179,13 @@ NOTE: Full probability distributions were obtained using PyMC
 #### Model Performance
 
 Model Evaluation on Original Scale:
+
 MAE: 5.0525 days²
+
 MSE: 41.0743 days
+
 RMSE: 6.4089 days
+
 R²: 0.1235
 
 <p align="center">
