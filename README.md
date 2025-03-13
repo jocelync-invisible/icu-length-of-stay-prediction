@@ -268,8 +268,8 @@ It is also worthwhile to mention that in addition to the two models presented in
 |-----------------------------|--------|--------|--------|--------|--------------|-----------|
 | Linear Regression           | 25.736 | 5.073  | 4.325  | 0.089  | MIMIC III & IV | Linear    |
 | Bayesian Linear Regression  | 27.563 | 5.250  | 4.560  | 0.026  | MIMIC III & IV | Linear    |
-| BNN                         | 30.498 | 5.523  | 4.482  | -0.080 | MIMIC III & IV | Linear    |
-| BNN w/PCA                   | 18.395 | 4.289  | 2.229  | 0.585  | MIMIC III & IV | Linear    |
+| BNN                         | 30.498 | 5.523  | 4.482  | -0.080 | MIMIC III & IV | Non-Linear    |
+| BNN w/PCA                   | 18.395 | 4.289  | 2.229  | 0.585  | MIMIC III & IV | Non-Linear    |
 | Linear Regression w/PCA     | 28.373 | 5.327  | 3.750  | 0.118  | MIMIC III & IV | Linear    |
 | Bayesian Linear w/PCA       | 28.390 | 5.328  | 3.749  | 0.170  | MIMIC III & IV | Linear    |
 | DecisionTreeRegressor       | 0.501  | 0.708  | 0.397  | 0.471  | MIMIC III & IV | Non-Linear |
