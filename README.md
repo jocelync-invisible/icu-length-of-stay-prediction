@@ -258,12 +258,7 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
 
 
-## Model Interpretation and Model Comparison 
-
-### Infections May Not Be a Significant Predictor for ICU LOS
-
-
-
+## Model Comparison and Interpretation
 
 ### Bayesian Neural Network Outperforms Bayesian Linear Regression
 
