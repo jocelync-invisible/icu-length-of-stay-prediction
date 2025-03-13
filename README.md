@@ -8,7 +8,7 @@ Alexa Kung, Feby Hadayani, Qing Chen, Sara Chaker
 
 ## Overview & Problem Statement
 
-The aim of this project is to develop a model that utilizes Bayesian methods to predict a patient's length of stay (los) in the Intensive Care Unit (ICU) using de-identified public in-patient datasets, MIMIC-III and MIMIC-IV. Current literature has explored the application of Bayesian methods for predicting various outcomes related to disease severity and ICU stays. However, most studies have focused on specific diagnoses. Therefore, in this project, we aim to investigate the effect of infection-causing bacteria on a patient’s LOS in the ICU.
+The aim of this project is to develop a model that utilizes Bayesian methods to predict a patient's length of stay (LOS) in the Intensive Care Unit (ICU) using de-identified public in-patient datasets, MIMIC-III and MIMIC-IV. Current literature has explored the application of Bayesian methods for predicting various outcomes related to disease severity and ICU stays. However, most studies have focused on specific diagnoses. Therefore, in this project, we aim to investigate the effect of infection-causing bacteria on a patient’s LOS in the ICU.
 
 Bayesian modeling is particularly well-suited for investigating this problem as Bayesian methods are most effective when uncertainty is high and prior data can help refine future outcomes. By applying different Bayesian approaches that account for uncertainty, we aim to utilize and incorporate microbiological culture data and patient demographics to refine ICU LOS predictions. This, in turn, can aid clinicians develop more targeted and personalized treatment plans for patients with serious and/or multiple infections, given that the precise impact of specific bacteria on LOS is not yet well understood.
 
@@ -164,14 +164,15 @@ The model follows a Bayesian framework with:
 <p align="center">
       <img src="https://github.com/user-attachments/assets/39eb6005-2dbc-44b3-80d2-3775ead8a7da" width="600">
     </p>
-<sub>This visualization represents the initial beliefs about parameter values in the model.The coefficient parameters (Alpha and Beta 1-7) have normal distributions centered around different values between -0.2 and 0.1, while Sigma (error term) has a half-normal distribution centered around 0.9. These priors represent initial assumptions about parameter values before incorporating any data - coefficients are centered near zero (indicating no strong initial direction assumptions) while the error term is positive with a moderate variance assumption. </sub>
-<br><br>
+<sub>This visualization represents the initial beliefs about parameter values in the model. The coefficient parameters (Alpha and Beta 1-7) have normal distributions centered around different values between -0.2 and 0.1, while Sigma (error term) has a half-normal distribution centered around 0.9. These priors represent initial assumptions about parameter values before incorporating any data - coefficients are centered near zero (indicating no strong initial direction assumptions) while the error term is positive with a moderate variance assumption. </sub>
+<br><be>
+
 - Posterior: Updated beliefs after observing data, obtained through MCMC sampling
 
 <p align="center">
       <img src="https://github.com/user-attachments/assets/6370896d-21da-4d4a-b4df-b7cae334ff89" width="700">
     </p>
-<sub>This plot shows the posterior distributions for alpha, sigma and seven beta coefficients in a Bayesian linear regression model across 2000 MCMC iterations.The y-axis displays the coefficient values, while the x-axis shows sampling iterations.The coefficients show clear separation into distinct bands with different values.The stable traces indicate good MCMC convergence, and the separation suggests each predictor has a distinct and consistent effect on the target variable.</sub>
+<sub>This plot shows the posterior distributions for alpha, sigma and seven beta coefficients in a Bayesian linear regression model across 2000 MCMC iterations. The y-axis displays the coefficient values, while the x-axis shows sampling iterations. The coefficients show clear separation into distinct bands with different values. The stable traces indicate good MCMC convergence, and the separation suggests each predictor has a distinct and consistent effect on the target variable.</sub>
 <br><br>
 
 NOTE: Full probability distributions were obtained using PyMC
@@ -259,11 +260,12 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
 ## Model Interpretation and Model Comparison 
 
-### Infections May not be a Significant Predictor for ICU LOS
+### Infections May Not Be a Significant Predictor for ICU LOS
 
 
 
-### Bayesian Neural Network Outperforms All Other Tested Models
+
+### Bayesian Neural Network Outperforms Bayesian Linear Regression
 
 Comparing the two models we ran, the Bayesian Neural Network (BNN) outperformed the Bayesian linear regression substantially. The R^2 for the BNN was nearly four times larger than the R^2 for the Bayesian linear regression, indicating that the BNN was able to explain a significantly larger proportion of the variance in our data. This result aligns with our initial hypothesis when selecting models for this project, as we anticipated that the BNN’s capacity for capturing complex, non-linear relationships would lead to superior predictive performance compared to a Bayesian linear regression. 
 
@@ -297,7 +299,7 @@ It is also worthwhile to mention that in addition to the two models presented in
 
   **Limited Dataset Size**
 
-  One of the major challenges in our analysis was the relatively small sample size of the dataset. Given the complexity of ICU LOS prediction, having more data would have been beneficial for improving generalization and model stability. The small dataset increased the risk of overfitting, particularly for our Bayesian Neural Network (BNN), which typically requires more data to fully capture complex patterns. Notably, when we incorporated additional data from MIMIC-IV, we observed significant improvements in model performance compared to using only MIMIC-III. 
+  One of the significant challenges in our analysis was the relatively small sample size. Given the complexity of ICU LOS prediction, having more data would have been beneficial for improving generalization and model stability. The small dataset increased the risk of overfitting, particularly for our Bayesian Neural Network (BNN), which typically requires more data to fully capture complex patterns. Notably, when we incorporated additional data from MIMIC-IV, we observed significant improvements in model performance compared to only MIMIC-III. 
 
 
 #### 2. Model-Related Challenges
@@ -328,7 +330,7 @@ Additionally, our current models assume a linear relationship between principal 
 
 ### Bridging the Gap Between Predictions and Clinical Expertise for Greater Applicability
 
-While some of us have prior experience in the healthcare field, our feature selection and modeling process would have benefitted from deeper collaboration with clinicians. Incorporating additional clinical variables—such as treatment interventions or lab results could provide a more comprehensive picture of factors influencing ICU LOS for infections. 
+While some of us have prior experience in the healthcare field, our feature selection and modeling process would have benefitted from deeper collaboration with clinicians. Additional clinical variables, such as treatment interventions or lab results, could provide a more comprehensive picture of factors influencing ICU LOS for infections. 
 
 Clinical input is essential to ensure the model’s predictions align with real-world decision-making. Without incorporating expert domain knowledge, even the most sophisticated model risks producing results that lack practical relevance. Future iterations of this project should prioritize collaborations with healthcare professionals to refine model inputs and ensure its applicability in a clinical setting.
 
