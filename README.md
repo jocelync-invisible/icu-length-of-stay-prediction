@@ -69,11 +69,6 @@ To build a comprehensive dataset for predicting length of stay (LOS) in the ICU,
     </p>
 After running a PCA to reduce the dimensionality of the variables, we chose to use 7 principal components as this threshold explains at least 95% variance from our data. 
 
-#### Feature Importance
-
-Demographic characteristics are the top influential features in explaining the LOS variance.
-
-
 
 #### Final Dataset:
   <p align="center">
