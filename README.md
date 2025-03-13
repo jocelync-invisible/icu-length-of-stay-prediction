@@ -84,7 +84,6 @@ After running a PCA to reduce the dimensionality of the variables, we chose to u
 | Age  | Patient age at admission  |
 | Gender  | Patient gender (1: Male, 0: Female)  |
 | Insurance  | Binary variable of insurance on admission (1: Medicare, Medicaid; 0: Private)  |
-| Marital_status  | Patient age on the admission (in years) |
 | Positive_culture  | Binary variable of bacterial infections (1: infected, 0: not infected)  |
 | Marital_status  | Marital status of patient on admission (1: Married, 0: Single, Widowed, Divorced)  |
 | Microbio_group  | Category of bacterial infections (microbio_group_gram_negative_rods, microbio_group_gram_positive_cocci, microbio_group_gram_positive_rods, microbio_group_mixed_flora, microbio_group_fungi_yeasts)   |
