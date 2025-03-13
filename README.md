@@ -290,26 +290,27 @@ It is also worthwhile to mention that in addition to the two models presented in
 
 #### 1. Data-Related Challenges
 
-  **Importance of Feature Selection**
+***Importance of Feature Selection***
 
-  Deciding on the most relevant features took a substantial amount of time as we were unsure out of the many parameters available, which would be the most relevant to the prediction. Additionally, the use of Principal Component Analysis (PCA) was a crucial preprocessing step that we initially did not include. Applying a PCA to reduce the dimensionality of the features substantially helped our models as the predictive accuracy increased pre- and post-PCA.
+Deciding on the most relevant features took a substantial amount of time as we were unsure out of the many parameters available, which would be the most relevant to the prediction. Additionally, the use of Principal Component Analysis (PCA) was a crucial preprocessing step that we initially did not include. Applying a PCA to reduce the dimensionality of the features substantially helped our models as the predictive accuracy increased pre- and post-PCA.
 
-  **Limited Dataset Size**
+***Limited Dataset Size***
 
-  One of the significant challenges in our analysis was the relatively small sample size. Given the complexity of ICU LOS prediction, having more data would have been beneficial for improving generalization and model stability. The small dataset increased the risk of overfitting, particularly for our Bayesian Neural Network (BNN), which typically requires more data to fully capture complex patterns. Notably, when we incorporated additional data from MIMIC-IV, we observed significant improvements in model performance compared to only MIMIC-III. 
+One of the significant challenges in our analysis was the relatively small sample size. Given the complexity of ICU LOS prediction, having more data would have been beneficial for improving generalization and model stability. The small dataset increased the risk of overfitting, particularly for our Bayesian Neural Network (BNN), which typically requires more data to fully capture complex patterns. Notably, when we incorporated additional data from MIMIC-IV, we observed significant improvements in model performance compared to only MIMIC-III. 
 
 
 #### 2. Model-Related Challenges
 
-  **Unknown Prior Distribution**
-  A notable limitation of this project was the uncertainty surrounding the choice of prior distributions, specifically in the Bayesian linear regression model. Bayesian methods rely on prior beliefs regarding the parameters before observing the data. In this study, we chose to use a normal distribution as the prior for the coefficients in our regression model. While this is a standard choice, it is unclear whether this truly reflects the underlying distribution. If the real-world distribution of the parameters deviates from the assumed normal prior, then the model's estimates and predictions may be suboptimal or inapplicable. 
+***Unknown Prior Distribution***
+
+A notable limitation of this project was the uncertainty surrounding the choice of prior distributions, specifically in the Bayesian linear regression model. Bayesian methods rely on prior beliefs regarding the parameters before observing the data. In this study, we chose to use a normal distribution as the prior for the coefficients in our regression model. While this is a standard choice, it is unclear whether this truly reflects the underlying distribution. If the real-world distribution of the parameters deviates from the assumed normal prior, then the model's estimates and predictions may be suboptimal or inapplicable. 
 
 
 #### 3. Lessons Learned
 
-  **Modeling ICU LOS is Complex**
+**Modeling ICU LOS is Complex**
 
-  Predicting ICU length of stay involves multiple factors beyond what our dataset captured. Patient outcomes are influenced by numerous variables, including treatment protocols, comorbidities, and hospital-specific factors that were not included in our dataset. This limitation highlighted the importance of integrating clinical expertise into our analysis.
+Predicting ICU length of stay involves multiple factors beyond what our dataset captured. Patient outcomes are influenced by numerous variables, including treatment protocols, comorbidities, and hospital-specific factors that were not included in our dataset. This limitation highlighted the importance of integrating clinical expertise into our analysis.
 
 
 
