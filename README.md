@@ -251,7 +251,20 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
 
 
-## Model Comparison and Reflections/Lessons Learned 
+## Model Interpretation and Model Comparison 
+
+| Model                            | Data          | Type       | MSE    | RMSE  | MAE   | R²    |
+|----------------------------------|--------------|-----------|--------|-------|-------|------|
+| Linear Regression               | MIMIC III & IV | Linear    | 25.736 | 5.073 | 4.325 | 0.089 |
+| Bayesian Linear Regression      | MIMIC III & IV | Linear    | 27.563 | 5.250 | 4.560 | 0.026 |
+| BNN                              | MIMIC III & IV | Linear    | 30.498 | 5.523 | 4.482 | -0.080 |
+| BNN w/PCA                        | MIMIC III & IV | Linear    | 23.335 | 4.831 | 3.313 | 0.049 |
+| Linear Regression w/PCA         | MIMIC III & IV | Linear    | 28.373 | 5.327 | 3.750 | 0.118 |
+| Bayesian Linear w/ PCA          | MIMIC III & IV | Linear    | 28.390 | 5.328 | 3.749 | 0.170 |
+| DecisionTreeRegressor           | MIMIC III & IV | Non-Linear | 0.501  | 0.708 | 0.397 | 0.471 |
+| SVR                              | MIMIC III & IV | Non-Linear | 0.819  | 0.746 | 0.905 | 0.412 |
+| RandomForestRegressor           | MIMIC III & IV | Non-Linear | 0.286  | 0.535 | 0.342 | 0.795 |
+
 
 
 ### Bayesian Neural Network Outperforms All Other Tested Models
