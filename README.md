@@ -71,9 +71,9 @@ After running a PCA to reduce the dimensionality of the variables, we chose to u
 
 #### Feature Importance
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/01311976-1abd-4b7c-a8ae-6f63859237af" width="500">
+      <img src="https://github.com/user-attachments/assets/01311976-1abd-4b7c-a8ae-6f63859237af" width="600">
     </p>
-Demographic charateristics are the top influential features in explaining the los variance.
+Demographic characteristics are the top influential features in explaining the los variance.
 
 
 
@@ -169,7 +169,7 @@ The model follows a Bayesian framework with:
 - Posterior: Updated beliefs after observing data, obtained through MCMC sampling
 
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/6370896d-21da-4d4a-b4df-b7cae334ff89" width="600">
+      <img src="https://github.com/user-attachments/assets/6370896d-21da-4d4a-b4df-b7cae334ff89" width="700">
     </p>
 <sub>This plot shows the posterior distributions for alpha, sigma and seven beta coefficients in a Bayesian linear regression model across 2000 MCMC iterations.The y-axis displays the coefficient values, while the x-axis shows sampling iterations.The coefficients show clear separation into distinct bands with different values.The stable traces indicate good MCMC convergence, and the separation suggests each predictor has a distinct and consistent effect on the target variable.</sub>
 <br><br>
