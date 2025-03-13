@@ -216,34 +216,37 @@ The model was trained with the following callbacks:
 - ReduceLROnPlateau: Reducing learning rate by a factor of 0.3 with patience of 10 epochs
 
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/df0d50eb-fdf4-43be-8d3d-329eedd84821" width="700">
+      <img src="https://github.com/user-attachments/assets/5ccfddd2-798a-4c3e-b2dd-57280a74649c" width="700">
     </p>
-
+    
+*The Bayesian Neural Network shows consistent performance improvement over training epochs, with validation loss (orange) remaining below training loss (blue), indicating good generalization without overfitting.*
 
 #### Uncertainty Estimation
 
 Uncertainty is estimated using Monte Carlo Dropout with 100 forward passes during inference. This provides both the mean prediction and standard deviation for each sample.
 
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/28513fe7-ab15-41a9-afb4-fd07041f9408" width="700">
+      <img src="https://github.com/user-attachments/assets/6b78824b-fe87-46b1-8c62-aeebe46c0c85" width="700">
     </p>
+    
+*Model uncertainty increases with longer predicted hospital stays, showing greater predictive confidence for typical cases (0-10 days) and higher uncertainty for extended stays (25-30 days).*
 
+<p align="center">
+      <img src="https://github.com/user-attachments/assets/4b17baba-ab96-4908-a433-4db55b56c94d" width="700">
+    </p>
+    
+*The model does a fair job predicting typical hospital stays, but becomes less certain when trying to predict unusually long stays.*
 
 #### Model Performance
 
 Performance metrics on the test set (original scale - days):
 
-- MSE: 0.2780 days²
-- RMSE: 0.5272 days
-- MAE: 0.2950 days
-- R-squared: 0.7060
+- MSE: 18.3950 days²
+- RMSE: 4.2889 days
+- MAE: 2.2285 days
+- R-squared: 0.5848
 
-<p align="center">
-      <img src="https://github.com/user-attachments/assets/21efa533-9858-42a8-b731-b3410e89c596" width="700">
-    </p>
-
-
-Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall performance is moderately good (R-squared: 0.706). Despite this, the BNN's result is still very useful for doctors because it shows not just how long a patient might stay but also how confident we are in that prediction.
+Our Bayesian Neural Network shows that longer hospital stays are harder to predict accurately. The model's overall performance is moderately good (R-squared: 0.585). Despite this, the BNN's result is still very useful for doctors because it shows not just how long a patient might stay but also how confident we are in that prediction.
 
 
 
