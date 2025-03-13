@@ -143,50 +143,44 @@ In this analysis, the independent variables (X) are the principal components (PC
 The model follows a Bayesian framework with:
 
 - Prior Distributions: Initial beliefs about model parameters
-
+<p align="center">
+        <img src="https://github.com/user-attachments/assets/bf22be1b-1790-48e2-838c-00751262977a" width="600">
+    </p>
   a. Intercept (α) ~ Normal(0, 1)
-  
+  <br><br>
   b. Coefficients (β) ~ Normal(0, 1)
-  
+  <br><br>
   c. Error term (σ) ~ HalfNormal(1)
+  
+
 <p align="center">
       <img src="https://github.com/user-attachments/assets/39eb6005-2dbc-44b3-80d2-3775ead8a7da" width="600">
     </p>
-    
-
-- Likelihood: How the data is generated given the parameters
-
-  Observations follow a normal distribution around the predicted values
-  y ~ Normal(α + Xβ, σ)
-<p align="center">
-      <img src="https://github.com/user-attachments/assets/89702b4a-6b4f-4ea9-97ec-5a000879e6b3" width="600">
-    </p>
-
-
+<sub>This visualization represents the initial beliefs about parameter values in the model.The coefficient parameters (Alpha and Beta 1-7) have normal distributions centered around different values between -0.2 and 0.1, while Sigma (error term) has a half-normal distribution centered around 0.9. These priors represent initial assumptions about parameter values before incorporating any data - coefficients are centered near zero (indicating no strong initial direction assumptions) while the error term is positive with a moderate variance assumption. </sub>
+<br><br>
 - Posterior: Updated beliefs after observing data, obtained through MCMC sampling
 
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/9504e7b2-2d67-4906-a51f-bb1df333772e" width="600">
+      <img src="https://github.com/user-attachments/assets/6370896d-21da-4d4a-b4df-b7cae334ff89" width="600">
     </p>
+<sub>This plot shows the posterior distributions for alpha, sigma and seven beta coefficients in a Bayesian linear regression model across 2000 MCMC iterations.The y-axis displays the coefficient values, while the x-axis shows sampling iterations.The coefficients show clear separation into distinct bands with different values.The stable traces indicate good MCMC convergence, and the separation suggests each predictor has a distinct and consistent effect on the target variable.</sub>
+<br><br>
 
-
-* Full probability distributions were obtained using PyMC
+NOTE: Full probability distributions were obtained using PyMC
 
 #### Model Performance
 
-- RMSE Test: 0.9432375826569617
-
-- R^2 Test: 0.12356540029771512
-
-- RMSE Training: 0.9092801630996732
-
-- R^2 Training: 0.17004178873982456
+Model Evaluation on Original Scale:
+MAE: 5.0525 days²
+MSE: 41.0743 days
+RMSE: 6.4089 days
+R²: 0.1235
 
 <p align="center">
-      <img src="https://github.com/user-attachments/assets/00518d18-6ca4-4ff9-9f58-3cf9949a1bed" width="700">
+      <img src="https://github.com/user-attachments/assets/94b0854f-99a1-4d6e-b734-edbc0b9e0015" width="700">
     </p>
-  
 
+<sub>This plot shows the relationship between actual and predicted Length of Stay (LOS) in days, with uncertainty represented by 95% confidence intervals. The predictions cluster mainly in the 0-10 day range with uncertainties (confidence intervals) are very high across all predictions. This suggests linear regression is a poor model for this data</sub>
 
 
 ### 2. Bayesian Neural Network (BNN)
