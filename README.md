@@ -259,7 +259,7 @@ Our Bayesian Neural Network shows that longer hospital stays are harder to predi
 
 ## Model Interpretation and Model Comparison 
 
-
+### Infections May not be a Significant Predictor for ICU LOS
 
 
 
@@ -269,7 +269,8 @@ Comparing the two models we ran, the Bayesian Neural Network (BNN) outperformed 
 
 However, while the performance difference is clear, it is important to note the trade-offs associated with each approach. With a Bayesian linear regression, despite its lower R^2, it offers greater interpretability, lower computational cost, and robustness in scenarios with limited data. In contrast, the BNN, while more powerful, requires significantly more computational resources, hyperparameter tuning, and training time.
 
-It is also worthwile to mention that 
+It is also worthwhile to mention that in addition to the two models presented in this report, various other models were evaluated. Through the development and execution of this project, we recognized the value of dimensionality reduction and the importance of selecting a model that aligns with the dataset’s structure. As shown in the table below, models incorporating PCA components showed mixed results. While PCA improved performance for certain models, such as BNN, it had a negligible or negative effect on others, such as Bayesian Linear Regression. This suggests that the impact of PCA may depend on the specific model architecture and how it interacts with the dataset. Additionally, non-linear models generally outperformed linear models, with the Random Forest Regressor achieving the best results (MSE = 0.286, R² = 0.795). This suggests that the dataset exhibits non-linear trends, where a non-linear approach could enhance predictive accuracy. However, as the non-linear models were not Bayesian in nature, these were outside the scope of the current study and not explored in detail. 
+
 
 | Model                       | MSE    | RMSE   | MAE    | R²     | Data Source  | Type      |
 |-----------------------------|--------|--------|--------|--------|--------------|-----------|
