@@ -274,7 +274,8 @@ Comparing the two models we ran, the Bayesian Neural Network (BNN) outperformed 
 However, while the performance difference is clear, it is important to note the trade-offs associated with each approach. With a Bayesian linear regression, despite its lower R^2, it offers greater interpretability, lower computational cost, and robustness in scenarios with limited data. In contrast, the BNN, while more powerful, requires significantly more computational resources, hyperparameter tuning, and training time.
 
 
-### Reflection on Modeling Approach & Lessons Learned
+
+## Reflection on Modeling Approach & Lessons Learned
 
 #### 1. Data-Related Challenges
 
