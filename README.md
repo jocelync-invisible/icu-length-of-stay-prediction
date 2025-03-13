@@ -28,9 +28,9 @@ This project aims to predict LOS in the ICU using the MIMIC-III and MIMIC-IV dat
 
 ### Merging Tables
 
-To build a comprehensive dataset for predicting Length of Stay (LOS) in the ICU, we merged the following tables: 
+To build a comprehensive dataset for predicting length of stay (LOS) in the ICU, we merged the following tables: 
 
-- "admissions": information regarding a patient’s admission to the hospital. Includes demographic information. The unique identifier is hadm_id
+- "admissions": information regarding a patient’s admission to the hospital. Includes patient demographic information. The unique identifier is hadm_id.
   - Columns used: subject_id, hadm_id, insurance, marital_status
         <p align="center">
       <img src="https://github.com/user-attachments/assets/3e0ee544-6e55-46ec-8377-015fbdc01283" width="370">
@@ -73,7 +73,7 @@ After running a PCA to reduce the dimensionality of the variables, we chose to u
 <p align="center">
       <img src="https://github.com/user-attachments/assets/01311976-1abd-4b7c-a8ae-6f63859237af" width="600">
     </p>
-Demographic characteristics are the top influential features in explaining the los variance.
+Demographic characteristics are the top influential features in explaining the LOS variance.
 
 
 
@@ -104,14 +104,14 @@ Demographic characteristics are the top influential features in explaining the l
 <p align="center">
       <img src="https://github.com/user-attachments/assets/7ca129a7-ae2b-45e7-a845-847b6703f302" width="700">
     </p>
-There are 2731 rows from our data. LOS ranges from 0-31 days.
+There are 2,731 rows in the dataset. The range of LOS is from 0 to 31 days.
 </p>
 
 **Data Overview by Positive Culture**
 <p align="center">
       <img src="https://github.com/user-attachments/assets/e07108e1-32f2-4c97-877a-403ab527db1b" width="400">
     </p>
-There is data imbalance between positive and non-positive culture. The average los for positive culture is lower from the non-positive culture.
+There is a data imbalance between positive and non-positive cultures. The average LOS for a patient with a positive culture is lower than the non-positive culture.
 </p>
 
 **Top 10 Microorganisms by Number of Stays**
