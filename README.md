@@ -151,13 +151,7 @@ The model follows a Bayesian framework with:
   b. Coefficients (β) ~ Normal(0, 1)
   <br><br>
   c. Error term (σ) ~ HalfNormal(1)
-  
 
-<p align="center">
-      <img src="https://github.com/user-attachments/assets/39eb6005-2dbc-44b3-80d2-3775ead8a7da" width="600">
-    </p>
-<sub>This visualization represents the initial beliefs about parameter values in the model. The coefficient parameters (Alpha and Beta 1-7) have normal distributions centered around different values between -0.2 and 0.1, while Sigma (error term) has a half-normal distribution centered around 0.9. These priors represent initial assumptions about parameter values before incorporating any data - coefficients are centered near zero (indicating no strong initial direction assumptions) while the error term is positive with a moderate variance assumption. </sub>
-<br><be>
 
 - Posterior: Updated beliefs after observing data, obtained through MCMC sampling
 
