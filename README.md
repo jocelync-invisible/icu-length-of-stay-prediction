@@ -151,8 +151,7 @@ The model follows a Bayesian framework with:
   b. Coefficients (β) ~ Normal(0, 1)
   <br><br>
   c. Error term (σ) ~ HalfNormal(1)
-
-
+ <br><br>
 - Posterior: Updated beliefs after observing data, obtained through MCMC sampling
 
 <p align="center">
